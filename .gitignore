@@ -1,0 +1,29 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.egg-info/
+.venv/
+venv/
+
+# IDE
+.idea/
+.vscode/
+
+# Environment
+.env
+
+# Logs
+logs/
+*.log
+
+# Spark
+metastore_db/
+spark-warehouse/
+
+# Checkpoints
+streaming/checkpoints/
+
+# OS
+.DS_Store
+Thumbs.db
