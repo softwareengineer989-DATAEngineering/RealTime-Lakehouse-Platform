@@ -2,6 +2,28 @@ version: "3.9"
 
 services:
 
+  kafka:
+
+    image: bitnami/kafka:latest
+
+    container_name: kafka
+
+    hostname: kafka
+
+    env_file:
+      - docker/kafka/kafka.env
+
+    ports:
+      - "9092:9092"
+
+    volumes:
+      - kafka-data:/bitnami/kafka
+
+    networks:
+      - realtime-platform
+
+    restart: unless-stopped
+
 volumes:
 
   kafka-data:
@@ -9,3 +31,5 @@ volumes:
 networks:
 
   realtime-platform:
+
+    driver: bridge
