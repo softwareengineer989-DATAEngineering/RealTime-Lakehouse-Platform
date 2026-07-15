@@ -13,3 +13,12 @@ Future enhancements include:
 - Topic initialization
 - Health checks
 - Multi-broker configuration
+
+## Platform Components
+
+| Component      | Status |
+|----------------|--------|
+| Kafka Broker   | ✅ |
+| Spark Runtime  | 🚧 |
+| Delta Lake     | ⏳ |
+| Streaming Jobs | ⏳ |
