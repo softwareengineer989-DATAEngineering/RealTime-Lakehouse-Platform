@@ -1,3 +1,26 @@
-version: "3.9"
-
 services:
+  kafka:
+    image: ${KAFKA_IMAGE}:${KAFKA_VERSION}
+    container_name: kafka
+    hostname: kafka
+
+    env_file:
+      - docker/kafka/kafka.env
+
+    ports:
+      - "${HOST_KAFKA_PORT}:9092"
+
+    volumes:
+      - ${KAFKA_VOLUME}:/var/lib/kafka/data
+
+    restart: unless-stopped
+
+    networks:
+      - ${NETWORK_NAME}
+
+volumes:
+  kafka-data:
+
+networks:
+  realtime-platform:
+    driver: bridge
