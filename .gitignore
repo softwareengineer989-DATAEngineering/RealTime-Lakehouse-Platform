@@ -27,3 +27,16 @@ streaming/checkpoints/
 # OS
 .DS_Store
 Thumbs.db
+
+# Raw datasets
+datasets/raw/
+
+# Python cache
+__pycache__/
+*.pyc
+
+# Virtual Environment
+.venv/
+
+# IDE
+.idea/
