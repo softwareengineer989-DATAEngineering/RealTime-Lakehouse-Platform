@@ -1,0 +1,19 @@
+from pathlib import Path
+
+PROJECT_ROOT = Path(__file__).resolve().parents[3]
+
+DATASETS = PROJECT_ROOT / "datasets"
+LOGS = PROJECT_ROOT / "logs"
+DOCS = PROJECT_ROOT / "docs"
+SCRIPTS = PROJECT_ROOT / "scripts"
+
+APP_NAME = "RealTime Lakehouse Platform"
+
+PRODUCER_NAME = "instacart-producer"
+CONSUMER_NAME = "instacart-consumer"
+
+PRODUCER_LOGGER = "KafkaProducer"
+CONSUMER_LOGGER = "KafkaConsumer"
+PROCESSOR_LOGGER = "OrderProcessor"
+
+DEV_MODE = True

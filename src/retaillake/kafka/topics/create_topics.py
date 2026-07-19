@@ -1,10 +1,8 @@
 from confluent_kafka.admin import AdminClient
 from confluent_kafka.admin import NewTopic
 
-from topic_config import TOPICS
-
-
-BOOTSTRAP_SERVER = "localhost:9092"
+from retaillake.kafka.topics.topic_config import TOPICS
+from retaillake.configs.kafka_config import BOOTSTRAP_SERVERS
 
 
 admin = AdminClient(
