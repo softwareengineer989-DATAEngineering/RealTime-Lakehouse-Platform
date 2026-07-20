@@ -58,6 +58,30 @@ def validate_dataset():
     assert path.exists()
 
 
+
+def validate_streaming():
+    from retaillake.kafka.streaming.stream_engine import is_running
+
+    print(is_running())
+
+
+
+
+
+def validate_shutdown():
+    from retaillake.kafka.streaming.shutdown import register_shutdown
+
+    print(register_shutdown)
+
+
+def validate_heartbeat():
+    from retaillake.kafka.monitoring.heartbeat import start
+
+    print(start)
+
+
+
+
 if __name__ == "__main__":
 
     print("=" * 70)
@@ -71,6 +95,13 @@ if __name__ == "__main__":
     check("Topics", validate_topics)
     check("Dataset", validate_dataset)
 
+    check("Streaming Engine", validate_streaming)
+
+    check("Shutdown", validate_shutdown)
+
+    check("Heartbeat", validate_heartbeat)
+
     print("=" * 70)
     print("Validation Complete")
     print("=" * 70)
+

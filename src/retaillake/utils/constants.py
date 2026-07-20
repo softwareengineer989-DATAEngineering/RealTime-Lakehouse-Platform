@@ -16,3 +16,7 @@ PRODUCER_POLL_INTERVAL = 1000
 
 # Local development safety limit
 TEST_RECORD_LIMIT = 20
+
+DEFAULT_ENCODING = "utf-8"
+
+SHUTDOWN_TIMEOUT = 5

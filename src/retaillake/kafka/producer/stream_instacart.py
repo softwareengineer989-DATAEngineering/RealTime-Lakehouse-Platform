@@ -18,25 +18,46 @@ from retaillake.utils.constants import (
     PRODUCER_POLL_INTERVAL
 )
 
+from retaillake.kafka.metrics.producer_metrics import ProducerMetrics
+# from retaillake.kafka.streaming.stream_engine import is_running
 
-logger = get_logger("Producer")
+from retaillake.kafka.streaming.stream_engine import is_running
+from retaillake.kafka.streaming.shutdown import register_shutdown
+from retaillake.kafka.monitoring.heartbeat import start
+
+from retaillake.configs.app_config import PRODUCER_LOGGER
+
+logger = get_logger(PRODUCER_LOGGER)
+
 
 TOPIC = TOPICS["orders_raw"]
 
 DATASET = get_orders_dataset()
 
+register_shutdown()
 
+start()
 
 producer = Producer(PRODUCER_CONFIG)
+metrics = ProducerMetrics()
 
 processed = 0
 
 start = time.time()
 
 
-for chunk in pd.read_csv(DATASET, chunksize=CHUNK_SIZE):
+for chunk in pd.read_csv(
+        DATASET,
+        chunksize=CHUNK_SIZE
+):
+
+    if not is_running():
+        break
 
     for _, row in chunk.iterrows():
+
+        if not is_running():
+            break
 
         record = row.to_dict()
 
@@ -52,6 +73,8 @@ for chunk in pd.read_csv(DATASET, chunksize=CHUNK_SIZE):
 
         )
 
+        metrics.increment()
+
         processed += 1
 
         if processed % PRODUCER_POLL_INTERVAL == 0:
@@ -62,6 +85,9 @@ for chunk in pd.read_csv(DATASET, chunksize=CHUNK_SIZE):
                 f"Processed {processed:,} records"
             )
 
+metrics.report()
+
+logger.info("Waiting for Producer Flush...")
 
 producer.flush()
 
