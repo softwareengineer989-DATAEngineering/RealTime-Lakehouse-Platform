@@ -1,5 +1,8 @@
-from retaillake.configs.kafka_config import BOOTSTRAP_SERVERS
 from retaillake.configs.app_config import CONSUMER_NAME
+from retaillake.configs.kafka_config import (
+    BOOTSTRAP_SERVERS,
+    TOPICS
+)
 
 CONSUMER_CONFIG = {
 
@@ -9,6 +12,13 @@ CONSUMER_CONFIG = {
 
     "auto.offset.reset": "earliest",
 
-    "enable.auto.commit": False
+    "enable.auto.commit": False,
+
+    "session.timeout.ms": 45000,
+
+    "max.poll.interval.ms": 300000
 
 }
+
+TOPIC = TOPICS["orders_raw"]
+
