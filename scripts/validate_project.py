@@ -79,7 +79,11 @@ def validate_heartbeat():
 
     print(start)
 
+def validate_consumer_metrics():
 
+    from retaillake.kafka.metrics.consumer_metrics import ConsumerMetrics
+
+    print(ConsumerMetrics)
 
 
 if __name__ == "__main__":
@@ -92,6 +96,7 @@ if __name__ == "__main__":
     check("Logger", validate_logger)
     check("Producer", validate_producer)
     check("Consumer", validate_consumer)
+    check("Consumer Metrics", validate_consumer_metrics)
     check("Topics", validate_topics)
     check("Dataset", validate_dataset)
 

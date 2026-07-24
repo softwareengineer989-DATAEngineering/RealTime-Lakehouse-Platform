@@ -16,8 +16,9 @@ from retaillake.utils.constants import (
 )
 from retaillake.configs.app_config import CONSUMER_LOGGER
 from retaillake.configs.app_config import DEV_MODE
+from retaillake.kafka.metrics.consumer_metrics import ConsumerMetrics
 
-
+from retaillake.kafka.consumer.retry_processor import process_with_retry
 
 logger = get_logger(CONSUMER_LOGGER)
 
@@ -41,6 +42,8 @@ def main():
 
     global running
 
+    metrics = ConsumerMetrics()
+
     processed = 0
 
     start = time.time()
@@ -60,7 +63,9 @@ def main():
 
             record = deserialize(msg.value())
 
-            process(record)
+            process_with_retry(record)
+
+            metrics.increment()
 
             consumer.commit(msg)
 
@@ -96,6 +101,8 @@ def main():
     logger.info(
         f"Rate : {processed/elapsed:.2f} msg/sec"
     )
+
+    metrics.report()
 
     logger.info("=" * 60)
 
