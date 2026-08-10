@@ -20,3 +20,9 @@ TEST_RECORD_LIMIT = 20
 DEFAULT_ENCODING = "utf-8"
 
 SHUTDOWN_TIMEOUT = 5
+
+SPARK_APP_NAME = "RealTime-Lakehouse-Platform"
+
+CHECKPOINT_LOCATION = "/app/checkpoints/bronze"
+
+BRONZE_PATH = "/app/data/bronze"

@@ -5,6 +5,7 @@ __pycache__/
 *.egg-info/
 .venv/
 venv/
+*.pyc
 
 # IDE
 .idea/
@@ -31,12 +32,24 @@ Thumbs.db
 # Raw datasets
 datasets/raw/
 
-# Python cache
-__pycache__/
-*.pyc
 
 # Virtual Environment
 .venv/
 
-# IDE
-.idea/
+
+
+
+# Runtime data
+data/
+
+# Spark checkpoints
+checkpoints/
+
+
+
+# Spark event logs
+spark-events/
+
+
+
+
