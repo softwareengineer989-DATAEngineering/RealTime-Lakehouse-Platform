@@ -16,6 +16,11 @@ PRODUCER_LOGGER = "KafkaProducer"
 CONSUMER_LOGGER = "KafkaConsumer"
 PROCESSOR_LOGGER = "OrderProcessor"
 
+
+CHECKPOINTS = PROJECT_ROOT / "checkpoints"
+
+BRONZE = DATASETS.parent / "data" / "bronze"
+
 STREAM_BATCH_SIZE = 500
 
 STREAM_DELAY = 0.01
