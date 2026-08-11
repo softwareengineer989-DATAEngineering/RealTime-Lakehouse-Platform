@@ -36,3 +36,12 @@ SILVER_PATH = "/app/data/silver"
 SILVER_CHECKPOINT = "/app/checkpoints/silver"
 
 DLQ_PATH = "/app/data/dlq"
+
+# -------------------------------------------------------
+# Gold Layer
+# -------------------------------------------------------
+
+GOLD_PATH = "/app/data/gold"
+
+GOLD_CHECKPOINT = "/app/checkpoints/gold"
+
