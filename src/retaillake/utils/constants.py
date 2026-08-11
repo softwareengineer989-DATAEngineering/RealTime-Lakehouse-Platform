@@ -26,3 +26,13 @@ SPARK_APP_NAME = "RealTime-Lakehouse-Platform"
 CHECKPOINT_LOCATION = "/app/checkpoints/bronze"
 
 BRONZE_PATH = "/app/data/bronze"
+
+# ------------------------------------------------------------------
+# Silver Layer
+# ------------------------------------------------------------------
+
+SILVER_PATH = "/app/data/silver"
+
+SILVER_CHECKPOINT = "/app/checkpoints/silver"
+
+DLQ_PATH = "/app/data/dlq"
