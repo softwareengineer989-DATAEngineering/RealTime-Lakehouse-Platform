@@ -1,0 +1,14 @@
+application:
+  name: RealTime-Lakehouse-Platform
+  version: 1.0.0
+
+  environment: development
+
+logging:
+  level: INFO
+
+spark:
+  app_name: RetailLakehouse
+
+kafka:
+  topic: instacart-orders

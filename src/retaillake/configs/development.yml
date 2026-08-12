@@ -1,0 +1,12 @@
+environment:
+  name: development
+
+paths:
+  bronze: /app/data/bronze
+  silver: /app/data/silver
+  gold: /app/data/gold
+
+checkpoint:
+  bronze: /app/checkpoints/bronze
+  silver: /app/checkpoints/silver
+  gold: /app/checkpoints/gold

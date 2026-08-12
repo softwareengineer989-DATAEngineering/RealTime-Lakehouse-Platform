@@ -1,0 +1,5 @@
+environment:
+  name: production
+
+logging:
+  level: WARNING
