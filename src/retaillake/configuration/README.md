@@ -125,3 +125,67 @@ python3 /app/src/retaillake/configuration/test_config.py
 - Vault integration
 - Configuration versioning
 - Configuration hot reload
+
+
+# Enterprise Logging Platform
+
+## Overview
+
+The RealTime Lakehouse Platform uses a centralized logging framework.
+
+All modules obtain loggers from LoggerFactory.
+
+No module configures handlers directly.
+
+## Log Levels
+
+DEBUG
+Internal diagnostics.
+
+INFO
+Lifecycle events.
+
+WARNING
+Recoverable issues.
+
+ERROR
+Operation failed.
+
+CRITICAL
+Fatal system failure.
+
+## Architecture
+
+Application
+
+↓
+
+LoggerFactory
+
+↓
+
+Formatter
+
+↓
+
+Handlers
+
+↓
+
+Console
+
++
+
+Rotating File
+
+## Benefits
+
+Single configuration
+
+Consistent formatting
+
+Future JSON logging
+
+Cloud-ready
+
+Production-ready
