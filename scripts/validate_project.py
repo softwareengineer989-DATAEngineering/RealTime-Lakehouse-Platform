@@ -1,15 +1,34 @@
 from pathlib import Path
 import traceback
 
+from retaillake.logging.logger_factory import LoggerFactory
+
+logger = LoggerFactory.get_logger(__name__)
+
+logger.info(
+    "RetailLake validation started."
+)
 
 def check(name, func):
+    logger.info(f"Running validation: {name}")
+
     print(f"[CHECK] {name}")
+
     try:
         func()
+
+        logger.info(f"{name} validation passed")
+
         print(f"[PASS] {name}\n")
+
     except Exception:
+
+        logger.exception(f"{name} validation failed")
+
         print(f"[FAIL] {name}")
+
         traceback.print_exc()
+
         print()
 
 

@@ -7,6 +7,9 @@ Validates platform configuration before pipeline startup.
 from pathlib import Path
 from typing import Any
 import re
+from retaillake.logging.logger_factory import LoggerFactory
+
+logger = LoggerFactory.get_logger(__name__)
 
 SEMANTIC_VERSION_PATTERN = r"^\d+\.\d+\.\d+$"
 
@@ -14,6 +17,10 @@ def validate_configuration(config: dict) -> None:
     """
     Master validation function.
     """
+
+    logger.info(
+        "Starting configuration validation."
+    )
 
     required = [
 
@@ -46,6 +53,10 @@ def validate_configuration(config: dict) -> None:
     validate_business_rules(config)
 
     validate_paths(config)
+
+    logger.info(
+        "Configuration validation completed successfully."
+    )
 
 
 def validate_required_keys(config: dict, required_keys: list[str]) -> None:

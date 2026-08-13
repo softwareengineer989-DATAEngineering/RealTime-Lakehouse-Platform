@@ -1,14 +1,24 @@
 from retaillake.configuration.config_loader import load_configuration
 from retaillake.configuration.validator import validate_configuration
+from retaillake.logging.logger_factory import LoggerFactory
+
+logger = LoggerFactory.get_logger(__name__)
 
 
 def main():
 
     try:
-
         config = load_configuration()
 
+        logger.info(
+            "Configuration loaded."
+        )
+
         validate_configuration(config)
+
+        logger.info(
+            "Configuration validation succeeded."
+        )
 
         print()
 
@@ -28,6 +38,10 @@ def main():
 
     except Exception as e:
 
+        logger.exception(
+            "Configuration validation failed."
+        )
+
         print()
         print("=" * 60)
         print("CONFIGURATION VALIDATION FAILED")
@@ -36,7 +50,6 @@ def main():
         print(f"{type(e).__name__}: {e}")
 
         raise SystemExit(1)
-
 
 if __name__ == "__main__":
     main()
