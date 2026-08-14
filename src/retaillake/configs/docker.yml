@@ -1,0 +1,8 @@
+environment:
+  name: docker
+
+logging:
+  level: INFO
+
+kafka:
+  bootstrap_servers: kafka:9092

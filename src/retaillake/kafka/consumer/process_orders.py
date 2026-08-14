@@ -5,18 +5,6 @@ logger = get_logger(PROCESSOR_LOGGER)
 
 
 def process(record):
-    # if random.randint(1, 10) == 3:
-    #     raise RuntimeError(
-    #
-    #         "Simulated processing failure."
-    #
-    #     )
-    #
-    # logger.info(
-    #
-    #     f"Processed Order {record['order_id']}"
-    #
-    # )
 
 
     logger.info(

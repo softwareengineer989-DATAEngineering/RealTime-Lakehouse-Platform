@@ -1,11 +1,12 @@
-from confluent_kafka import Producer
+"""
+Backward compatibility module.
 
-from retaillake.kafka.producer.config import PRODUCER_CONFIG
+Future producer creation should use:
 
-from retaillake.configs.app_config import PRODUCER_LOGGER
+ProducerFactory
+ProducerService
+"""
 
-from retaillake.utils.logger import get_logger
+from retaillake.kafka.producer.producer_factory import ProducerFactory
 
-logger = get_logger(PRODUCER_LOGGER)
-
-producer = Producer(PRODUCER_CONFIG)
+producer = ProducerFactory.create()

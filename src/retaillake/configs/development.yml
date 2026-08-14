@@ -10,3 +10,6 @@ checkpoint:
   bronze: /app/checkpoints/bronze
   silver: /app/checkpoints/silver
   gold: /app/checkpoints/gold
+
+kafka:
+  bootstrap_servers: localhost:9092
