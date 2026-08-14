@@ -1,3 +1,4 @@
+import os
 from pathlib import Path
 
 import yaml
@@ -21,31 +22,82 @@ def load_yaml(filename: str):
         return yaml.safe_load(file)
 
 
+def deep_merge(base: dict, override: dict) -> dict:
+    """
+    Recursively merge dictionaries.
+
+    Values from override replace values from base.
+    Nested dictionaries are merged rather than replaced.
+    """
+
+    merged = base.copy()
+
+    for key, value in override.items():
+
+        if (
+            key in merged
+            and isinstance(merged[key], dict)
+            and isinstance(value, dict)
+        ):
+
+            merged[key] = deep_merge(
+                merged[key],
+                value,
+            )
+
+        else:
+
+            merged[key] = value
+
+    return merged
+
+
 def load_configuration():
 
     app = load_yaml("application.yml")
 
     logger.info(
-        "Loaded application.yml"
+        "Loaded base configuration: application.yml"
     )
 
     env = get_environment()
 
     logger.info(
-        f"Active environment: {env}"
+        "Selected configuration profile: %s",
+        env,
     )
 
-    env_config = load_yaml(f"{env}.yml")
+    profile_file = f"{env}.yml"
 
     logger.info(
-        f"Loaded {env}.yml"
+        "Loading environment profile: %s",
+        profile_file,
+    )
+
+    env_config = load_yaml(profile_file)
+
+    if env_config is None:
+        raise RuntimeError(
+            f"Configuration profile '{profile_file}' is empty."
+        )
+
+    logger.info(
+        "Successfully loaded profile: %s",
+        profile_file,
     )
 
     logger.info(
         "Configuration successfully assembled."
     )
 
-    return {
-        **app,
-        **env_config,
-    }
+
+    merged = deep_merge(
+        app,
+        env_config,
+    )
+
+    logger.debug(
+        "Merged configuration successfully."
+    )
+
+    return merged

@@ -3,107 +3,113 @@ import time
 import pandas as pd
 from confluent_kafka import Producer
 
+from retaillake.configs.app_config import PRODUCER_LOGGER
 from retaillake.configs.datasets import get_orders_dataset
 from retaillake.configs.kafka_config import TOPICS
 
+from retaillake.kafka.metrics.producer_metrics import ProducerMetrics
+from retaillake.kafka.monitoring.heartbeat import start
 from retaillake.kafka.producer.config import PRODUCER_CONFIG
 from retaillake.kafka.producer.delivery_report import delivery_report
 from retaillake.kafka.producer.partitioner import get_message_key
 from retaillake.kafka.producer.serializer import serialize
+from retaillake.kafka.streaming.shutdown import register_shutdown
+from retaillake.kafka.streaming.stream_engine import is_running
 
-from retaillake.utils.logger import get_logger
 from retaillake.utils.constants import (
     CHUNK_SIZE,
     LOG_INTERVAL,
-    PRODUCER_POLL_INTERVAL
+    PRODUCER_POLL_INTERVAL,
 )
-
-from retaillake.kafka.metrics.producer_metrics import ProducerMetrics
-# from retaillake.kafka.streaming.stream_engine import is_running
-
-from retaillake.kafka.streaming.stream_engine import is_running
-from retaillake.kafka.streaming.shutdown import register_shutdown
-from retaillake.kafka.monitoring.heartbeat import start
-
-from retaillake.configs.app_config import PRODUCER_LOGGER
+from retaillake.utils.logger import get_logger
 
 logger = get_logger(PRODUCER_LOGGER)
 
-
 TOPIC = TOPICS["orders_raw"]
-
 DATASET = get_orders_dataset()
 
-register_shutdown()
 
-start()
+def stream_orders() -> None:
+    """
+    Stream Instacart Orders into Kafka.
+    """
 
-producer = Producer(PRODUCER_CONFIG)
-metrics = ProducerMetrics()
+    register_shutdown()
 
-processed = 0
+    producer = Producer(PRODUCER_CONFIG)
 
-start = time.time()
+    start()
 
+    metrics = ProducerMetrics()
 
-for chunk in pd.read_csv(
+    processed = 0
+
+    start_time = time.time()
+
+    for chunk in pd.read_csv(
         DATASET,
-        chunksize=CHUNK_SIZE
-):
-
-    if not is_running():
-        break
-
-    for _, row in chunk.iterrows():
+        chunksize=CHUNK_SIZE,
+    ):
 
         if not is_running():
             break
 
-        record = row.to_dict()
+        for _, row in chunk.iterrows():
 
-        producer.produce(
+            if not is_running():
+                break
 
-            topic=TOPIC,
+            record = row.to_dict()
 
-            key=get_message_key(record),
-
-            value=serialize(record),
-
-            callback=delivery_report
-
-        )
-
-        metrics.increment()
-
-        processed += 1
-
-        if processed % PRODUCER_POLL_INTERVAL == 0:
-            producer.poll(0)
-
-        if processed % LOG_INTERVAL == 0:
-            logger.info(
-                f"Processed {processed:,} records"
+            producer.produce(
+                topic=TOPIC,
+                key=get_message_key(record),
+                value=serialize(record),
+                callback=delivery_report,
             )
 
-metrics.report()
+            metrics.increment()
 
-logger.info("Waiting for Producer Flush...")
+            processed += 1
 
-producer.flush()
+            if processed % PRODUCER_POLL_INTERVAL == 0:
+                producer.poll(0)
 
-elapsed = time.time() - start
+            if processed % LOG_INTERVAL == 0:
+                logger.info(
+                    f"Processed {processed:,} records"
+                )
+
+    metrics.report()
+
+    logger.info("Waiting for Producer Flush...")
+
+    producer.flush()
+
+    elapsed = time.time() - start_time
+
+    logger.info("=" * 60)
+    logger.info("Producer Finished")
+    logger.info(f"Records : {processed:,}")
+    logger.info("Time : %.2f sec", elapsed)
+    logger.info(
+        "Rate : %.2f msg/sec",
+        processed / elapsed if elapsed else 0,
+    )
+    logger.info("=" * 60)
 
 
-logger.info("=" * 60)
+def main() -> None:
+    """
+    Producer application entrypoint.
+    """
 
-logger.info("Producer Finished")
+    logger.info("Starting Instacart Producer...")
 
-logger.info(f"Records : {processed:,}")
+    stream_orders()
 
-logger.info(f"Time : {elapsed:.2f} sec")
+    logger.info("Producer completed successfully.")
 
-logger.info(
-    f"Rate : {processed/elapsed:.2f} msg/sec"
-)
 
-logger.info("=" * 60)
+if __name__ == "__main__":
+    main()

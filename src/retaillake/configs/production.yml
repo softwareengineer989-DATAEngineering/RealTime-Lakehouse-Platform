@@ -3,3 +3,6 @@ environment:
 
 logging:
   level: WARNING
+
+kafka:
+  bootstrap_servers: kafka-prod-01:9092
