@@ -1,18 +1,40 @@
-from pyspark.sql.functions import col, from_json
+from pyspark.sql.functions import (
+    col,
+    from_json
+)
 
-from retaillake.spark.streaming.kafka_source import read_kafka_stream
+from retaillake.logging.logger_factory import LoggerFactory
 from retaillake.spark.schemas.order_schemas import ORDER_SCHEMA
+from retaillake.spark.streaming.kafka_source import create_kafka_source
 from retaillake.spark.bronze.bronze_writer import write_bronze
 
+logger = LoggerFactory.get_logger(__name__)
 
-def run():
 
-    kafka_df = read_kafka_stream()
+def run_bronze_stream() -> None:
+    """
+    Enterprise Bronze Streaming Pipeline.
 
-#Original Version
+    Kafka
+        ↓
+
+    Parse JSON
+        ↓
+
+    Bronze Delta
+    """
+
+    logger.info(
+        "Starting Bronze Streaming Pipeline..."
+    )
+
+    kafka_df = create_kafka_source()
+
     parsed = (
         kafka_df
-        .selectExpr("CAST(value AS STRING)")
+        .selectExpr(
+            "CAST(value AS STRING)"
+        )
         .select(
             from_json(
                 col("value"),
@@ -22,27 +44,18 @@ def run():
         .select("data.*")
     )
 
+    logger.info(
+        "Writing Bronze Delta Stream..."
+    )
+
     query = write_bronze(parsed)
 
-#Debugging version below -
-    # parsed = (
-    #     kafka_df
-    #     .selectExpr(
-    #         "CAST(key AS STRING) AS key",
-    #         "CAST(value AS STRING) AS value"
-    #     )
-    # )
-    #
-    # query = (
-    #     parsed.writeStream
-    #     .format("console")
-    #     .outputMode("append")
-    #     .option("truncate", "false")
-    #     .start()
-    # )
+    logger.info(
+        "Bronze Streaming Pipeline started."
+    )
 
     query.awaitTermination()
 
 
 if __name__ == "__main__":
-    run()
+    run_bronze_stream()

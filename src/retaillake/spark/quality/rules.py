@@ -1,5 +1,4 @@
 from pyspark.sql import DataFrame
-
 from pyspark.sql.functions import col
 
 
@@ -11,13 +10,54 @@ REQUIRED_COLUMNS = [
 
 
 def validate_required_fields(
-    df: DataFrame,
+    dataframe: DataFrame,
 ) -> DataFrame:
+    """
+    Validate required columns.
 
-    for column in REQUIRED_COLUMNS:
+    Removes rows containing NULL values.
+    """
 
-        df = df.filter(
-            col(column).isNotNull()
+    for column_name in REQUIRED_COLUMNS:
+
+        dataframe = dataframe.filter(
+            col(column_name).isNotNull()
         )
 
-    return df
+    return dataframe
+
+
+def validate_order_number(
+    dataframe: DataFrame,
+) -> DataFrame:
+    """
+    Order number must be positive.
+    """
+
+    return dataframe.filter(
+        col("order_number") > 0
+    )
+
+
+def validate_user_id(
+    dataframe: DataFrame,
+) -> DataFrame:
+    """
+    User ID must be positive.
+    """
+
+    return dataframe.filter(
+        col("user_id") > 0
+    )
+
+
+def validate_order_id(
+    dataframe: DataFrame,
+) -> DataFrame:
+    """
+    Order ID must be positive.
+    """
+
+    return dataframe.filter(
+        col("order_id") > 0
+    )

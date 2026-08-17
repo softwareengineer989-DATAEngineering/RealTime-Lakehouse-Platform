@@ -6,11 +6,18 @@ from pyspark.sql.functions import (
     when,
 )
 
+from retaillake.logging.logger_factory import LoggerFactory
 
-def transform(df: DataFrame) -> DataFrame:
+logger = LoggerFactory.get_logger(__name__)
+
+def transform_orders(df: DataFrame) -> DataFrame:
     """
     Enterprise Silver transformations.
     """
+
+    logger.info(
+        "Applying Silver transformations..."
+    )
 
     return (
 

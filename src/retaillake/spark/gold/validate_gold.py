@@ -1,23 +1,46 @@
-from pyspark.sql import SparkSession
-from delta import configure_spark_with_delta_pip
+from pyspark.sql import DataFrame
 
-builder = (
-    SparkSession.builder
-    .appName("Gold Validation")
-    .config(
-        "spark.sql.extensions",
-        "io.delta.sql.DeltaSparkSessionExtension",
-    )
-    .config(
-        "spark.sql.catalog.spark_catalog",
-        "org.apache.spark.sql.delta.catalog.DeltaCatalog",
-    )
+from retaillake.logging.logger_factory import LoggerFactory
+
+from retaillake.spark.session.spark_session import (
+    get_spark,
 )
 
-spark = configure_spark_with_delta_pip(builder).getOrCreate()
+from retaillake.utils.constants import GOLD_PATH
 
-df = spark.read.format("delta").load("/app/data/gold")
+logger = LoggerFactory.get_logger(__name__)
 
-print(df.count())
 
-df.show(20, truncate=False)
+def validate_gold() -> None:
+    """
+    Validate Gold Delta table.
+    """
+
+    spark = get_spark()
+
+    logger.info(
+        "Validating Gold Delta..."
+    )
+
+    dataframe: DataFrame = (
+
+        spark.read
+
+        .format("delta")
+
+        .load(GOLD_PATH)
+
+    )
+
+    logger.info(
+        f"Gold Records = {dataframe.count()}"
+    )
+
+    dataframe.show(
+        20,
+        truncate=False,
+    )
+
+
+if __name__ == "__main__":
+    validate_gold()

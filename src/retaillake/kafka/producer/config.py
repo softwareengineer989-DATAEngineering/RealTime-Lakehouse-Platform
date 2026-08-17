@@ -1,4 +1,4 @@
-from retaillake.configs.kafka_config import BOOTSTRAP_SERVERS
+from retaillake.configs.kafka_defaults import BOOTSTRAP_SERVERS
 from retaillake.configs.app_config import PRODUCER_NAME
 
 PRODUCER_CONFIG = {

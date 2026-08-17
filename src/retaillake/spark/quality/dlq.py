@@ -2,14 +2,31 @@ from pyspark.sql import DataFrame
 from pyspark.sql.functions import col
 
 
-def split_valid_invalid(df: DataFrame):
+def split_valid_invalid(
+    dataframe: DataFrame,
+):
     """
-    Split validated stream into
-    valid and invalid records.
+    Split stream into
+
+    valid
+
+    invalid
+
+    records.
     """
 
-    valid = df.filter(col("is_valid"))
+    valid_dataframe = dataframe.filter(
+        col("is_valid")
+    )
 
-    invalid = df.filter(~col("is_valid"))
+    invalid_dataframe = dataframe.filter(
+        ~col("is_valid")
+    )
 
-    return valid, invalid
+    return (
+
+        valid_dataframe,
+
+        invalid_dataframe,
+
+    )

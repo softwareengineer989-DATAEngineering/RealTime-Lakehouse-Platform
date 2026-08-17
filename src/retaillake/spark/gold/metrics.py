@@ -1,14 +1,29 @@
 from pyspark.sql import DataFrame
-from pyspark.sql.functions import when, col
+
+from pyspark.sql.functions import (
+    col,
+    when,
+)
+
+from retaillake.logging.logger_factory import LoggerFactory
+
+logger = LoggerFactory.get_logger(__name__)
 
 
-def calculate_metrics(df: DataFrame) -> DataFrame:
+def calculate_customer_metrics(
+    dataframe: DataFrame,
+) -> DataFrame:
     """
-    Adds business metrics to Gold layer.
+    Calculate business metrics.
     """
+
+    logger.info(
+        "Calculating customer metrics..."
+    )
 
     return (
-        df
+
+        dataframe
 
         .withColumn(
             "is_repeat_customer",

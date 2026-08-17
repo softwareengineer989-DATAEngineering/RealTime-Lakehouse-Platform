@@ -5,7 +5,7 @@ from confluent_kafka import Producer
 
 from retaillake.configs.app_config import PRODUCER_LOGGER
 from retaillake.configs.datasets import get_orders_dataset
-from retaillake.configs.kafka_config import TOPICS
+from retaillake.configs.kafka_defaults import TOPICS
 
 from retaillake.kafka.metrics.producer_metrics import ProducerMetrics
 from retaillake.kafka.monitoring.heartbeat import start

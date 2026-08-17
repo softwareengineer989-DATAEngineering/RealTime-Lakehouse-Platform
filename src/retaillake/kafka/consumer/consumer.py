@@ -7,7 +7,7 @@ from retaillake.kafka.consumer.config import CONSUMER_CONFIG
 from retaillake.kafka.consumer.deserializer import deserialize
 from retaillake.kafka.consumer.process_orders import process
 
-from retaillake.configs.kafka_config import TOPICS
+from retaillake.configs.kafka_defaults import TOPICS
 from retaillake.utils.logger import get_logger
 from retaillake.utils.constants import (
     POLL_INTERVAL,

@@ -1,18 +1,33 @@
 from pyspark.sql import DataFrame
 
-from retaillake.spark.session.spark_session import get_spark
+from retaillake.logging.logger_factory import LoggerFactory
+
+from retaillake.spark.session.spark_session import (
+    get_spark,
+)
+
 from retaillake.utils.constants import SILVER_PATH
 
+logger = LoggerFactory.get_logger(__name__)
 
-def read_silver_stream() -> DataFrame:
+
+def create_silver_source() -> DataFrame:
     """
-    Read Silver Delta as a streaming source.
+    Create Silver streaming source.
     """
+
+    logger.info(
+        "Creating Silver Delta source..."
+    )
 
     spark = get_spark()
 
     return (
+
         spark.readStream
+
         .format("delta")
+
         .load(SILVER_PATH)
+
     )
