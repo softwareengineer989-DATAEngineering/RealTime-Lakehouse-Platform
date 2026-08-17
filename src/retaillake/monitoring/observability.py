@@ -1,52 +1,57 @@
-"""
-Observability utilities.
-
-Provides production
-monitoring helpers.
-"""
-
 from datetime import datetime
+
+from retaillake.logging.logger_factory import LoggerFactory
+
+
+logger = LoggerFactory.get_logger(__name__)
 
 
 class PlatformObservability:
-    """
-    Platform observability utilities.
-    """
 
     @staticmethod
-    def startup(pipeline: str):
+    def startup(name):
 
-        print()
+        logger.info("=" * 60)
 
-        print("=" * 60)
-
-        print(
-            f"Pipeline Startup : {pipeline}"
+        logger.info(
+            f"Pipeline Started : {name}"
         )
 
-        print(
-            f"Timestamp        : {datetime.now()}"
+        logger.info(
+            f"Timestamp : {datetime.now()}"
         )
 
-        print("=" * 60)
-
-        print()
+        logger.info("=" * 60)
 
     @staticmethod
-    def shutdown(pipeline: str):
+    def shutdown(name):
 
-        print()
+        logger.info("=" * 60)
 
-        print("=" * 60)
-
-        print(
-            f"Pipeline Shutdown : {pipeline}"
+        logger.info(
+            f"Pipeline Finished : {name}"
         )
 
-        print(
-            f"Timestamp         : {datetime.now()}"
+        logger.info(
+            f"Timestamp : {datetime.now()}"
         )
 
-        print("=" * 60)
+        logger.info("=" * 60)
 
-        print()
+    @staticmethod
+    def log_metrics(metrics):
+
+        logger.info(
+
+            f"Pipeline Metrics : {metrics.summary()}"
+
+        )
+
+    @staticmethod
+    def log_health(result):
+
+        logger.info(
+
+            f"Health : {result}"
+
+        )

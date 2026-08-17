@@ -1,13 +1,6 @@
-"""
-Central monitoring
-entry point.
-"""
-
 from retaillake.monitoring.health import PlatformHealth
-
-from retaillake.monitoring.observability import (
-    PlatformObservability,
-)
+from retaillake.monitoring.metrics import PipelineMetrics
+from retaillake.monitoring.observability import PlatformObservability
 
 from retaillake.utils.constants import (
     BRONZE_PATH,
@@ -16,41 +9,48 @@ from retaillake.utils.constants import (
 )
 
 
-def initialize_pipeline(name: str):
-    """
-    Initialize pipeline runtime.
-    """
+class PipelineMonitor:
 
-    PlatformObservability.startup(name)
+    def __init__(self, pipeline):
 
-    PlatformHealth.check_directory(
-        BRONZE_PATH
-    )
+        self.metrics = PipelineMetrics(
+            pipeline
+        )
 
-    PlatformHealth.check_directory(
-        SILVER_PATH
-    )
+        self.pipeline = pipeline
 
-    PlatformHealth.check_directory(
-        GOLD_PATH
-    )
+    def startup(self):
 
+        PlatformObservability.startup(
+            self.pipeline
+        )
 
-def shutdown_pipeline(name: str):
-    """
-        Graceful Shutdown pipeline.
-    """
+        self.metrics.start()
 
-    PlatformObservability.shutdown(name)
+        for path in (
+            BRONZE_PATH,
+            SILVER_PATH,
+            GOLD_PATH,
+        ):
 
+            PlatformObservability.log_health(
 
-# def run_health_checks():
-#     """
-#     Execute platform health checks.
-#     """
-#
-#     PlatformHealth.check_directory(BRONZE_PATH)
-#
-#     PlatformHealth.check_directory(SILVER_PATH)
-#
-#     PlatformHealth.check_directory(GOLD_PATH)
+                PlatformHealth.check_directory(path)
+
+            )
+
+    def shutdown(self):
+
+        self.metrics.finish()
+
+        PlatformObservability.log_metrics(
+
+            self.metrics
+
+        )
+
+        PlatformObservability.shutdown(
+
+            self.pipeline
+
+        )
