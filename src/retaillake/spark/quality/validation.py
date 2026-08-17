@@ -1,29 +1,36 @@
 from pyspark.sql import DataFrame
 from pyspark.sql.functions import col
 
-from retaillake.spark.quality.rules import validate_required_fields
+from retaillake.spark.quality.rules import (
+    validate_required_fields,
+    validate_order_id,
+    validate_order_number,
+    validate_user_id,
+)
 
 
-def validate(df: DataFrame) -> DataFrame:
+def validate(
+    dataframe: DataFrame,
+) -> DataFrame:
     """
-    Executes all validation rules.
-
-    Returns DataFrame with validation status.
+    Executes enterprise validation rules.
     """
 
-    # Existing validation rules
-    df = validate_required_fields(df)
+    dataframe = validate_required_fields(dataframe)
 
-    # Enterprise validation flag
-    df = (
-        df.withColumn(
-            "is_valid",
-            (
-                col("order_id").isNotNull()
-                & col("user_id").isNotNull()
-                & (col("order_number") > 0)
-            )
-        )
+    dataframe = validate_order_id(dataframe)
+
+    dataframe = validate_user_id(dataframe)
+
+    dataframe = validate_order_number(dataframe)
+
+    dataframe = dataframe.withColumn(
+        "is_valid",
+        (
+            col("order_id").isNotNull()
+            & col("user_id").isNotNull()
+            & (col("order_number") > 0)
+        ),
     )
 
-    return df
+    return dataframe

@@ -1,8 +1,14 @@
 """
-Enterprise Spark configuration.
+Enterprise Spark Configuration.
+
+Single source of truth for Spark runtime settings.
 """
 
-SPARK_CONFIG = {
+# ---------------------------------------------------------
+# SQL Configuration
+# ---------------------------------------------------------
+
+SPARK_SQL_CONFIG = {
 
     "spark.sql.extensions":
         "io.delta.sql.DeltaSparkSessionExtension",
@@ -14,6 +20,38 @@ SPARK_CONFIG = {
         "8",
 
     "spark.sql.adaptive.enabled":
-        "true"
+        "true",
 
+    "spark.sql.adaptive.coalescePartitions.enabled":
+        "true",
+
+    "spark.sql.session.timeZone":
+        "UTC",
+}
+
+
+# ---------------------------------------------------------
+# Runtime Configuration
+# ---------------------------------------------------------
+
+SPARK_RUNTIME_CONFIG = {
+
+    "spark.serializer":
+        "org.apache.spark.serializer.KryoSerializer",
+
+    "spark.driver.memory":
+        "2g",
+
+    "spark.executor.memory":
+        "2g",
+}
+
+
+# ---------------------------------------------------------
+# Unified Configuration
+# ---------------------------------------------------------
+
+SPARK_CONFIG = {
+    **SPARK_SQL_CONFIG,
+    **SPARK_RUNTIME_CONFIG,
 }

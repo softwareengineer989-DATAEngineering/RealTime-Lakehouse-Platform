@@ -1,23 +1,46 @@
 from pyspark.sql import DataFrame
+from pyspark.sql.streaming import StreamingQuery
+
+from retaillake.logging.logger_factory import LoggerFactory
 
 from retaillake.utils.constants import (
     SILVER_PATH,
-    SILVER_CHECKPOINT,
+    SILVER_CHECKPOINT
 )
 
+logger = LoggerFactory.get_logger(__name__)
 
-def write_silver(df: DataFrame):
+
+def write_silver(
+    dataframe: DataFrame
+) -> StreamingQuery:
     """
-    Persist validated Silver records to Delta Lake.
+    Write Silver Delta stream.
     """
+
+    logger.info(
+        f"Writing Silver stream to {SILVER_PATH}"
+    )
 
     return (
-        df.writeStream
+
+        dataframe
+
+        .writeStream
+
         .format("delta")
+
         .option(
             "checkpointLocation",
-            SILVER_CHECKPOINT,
+            SILVER_CHECKPOINT
         )
+
         .outputMode("append")
+
+        .trigger(
+            processingTime="10 seconds"
+        )
+
         .start(SILVER_PATH)
+
     )

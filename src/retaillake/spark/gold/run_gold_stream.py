@@ -1,17 +1,45 @@
-from retaillake.spark.gold.gold_stream import read_silver_stream
-from retaillake.spark.gold.transformations import transform
-from retaillake.spark.gold.gold_writer import write_gold
+from retaillake.logging.logger_factory import LoggerFactory
+
+from retaillake.spark.gold.gold_stream import (
+    create_silver_source,
+)
+
+from retaillake.spark.gold.transformations import (
+    transform_gold,
+)
+
+from retaillake.spark.gold.gold_writer import (
+    write_gold,
+)
+
+logger = LoggerFactory.get_logger(__name__)
 
 
-def run():
+def run_gold_stream() -> None:
+    """
+    Enterprise Gold Pipeline.
+    """
 
-    silver_df = read_silver_stream()
+    logger.info(
+        "Starting Gold Streaming Pipeline..."
+    )
 
-    gold_df = transform(silver_df)
+    silver_df = create_silver_source()
 
-    query = write_gold(gold_df)
+    gold_df = transform_gold(
+        silver_df
+    )
+
+    query = write_gold(
+        gold_df
+    )
+
+    logger.info(
+        "Gold Streaming Pipeline started."
+    )
 
     query.awaitTermination()
 
+
 if __name__ == "__main__":
-    run()
+    run_gold_stream()

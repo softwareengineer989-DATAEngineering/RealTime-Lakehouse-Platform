@@ -1,20 +1,29 @@
 from pyspark.sql import DataFrame
 from pyspark.sql.functions import (
-    count,
     avg,
+    count,
     max,
     min,
-    col,
 )
 
+from retaillake.logging.logger_factory import LoggerFactory
 
-def build_customer_metrics(df: DataFrame) -> DataFrame:
+logger = LoggerFactory.get_logger(__name__)
+
+
+def build_customer_metrics(
+    dataframe: DataFrame,
+) -> DataFrame:
     """
-    Build Gold customer-level metrics.
+    Build customer-level Gold metrics.
     """
+
+    logger.info(
+        "Building customer aggregations..."
+    )
 
     return (
-        df.groupBy("user_id")
+        dataframe.groupBy("user_id")
         .agg(
             count("*").alias("total_orders"),
             avg("order_hour_of_day").alias("avg_order_hour"),

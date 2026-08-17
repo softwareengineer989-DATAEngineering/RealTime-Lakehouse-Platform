@@ -1,23 +1,39 @@
-from pyspark.sql import SparkSession
-from delta import configure_spark_with_delta_pip
+from pyspark.sql import DataFrame
 
-builder = (
-    SparkSession.builder
-    .appName("Silver Validation")
-    .config(
-        "spark.sql.extensions",
-        "io.delta.sql.DeltaSparkSessionExtension"
+from retaillake.logging.logger_factory import LoggerFactory
+from retaillake.spark.session.spark_session import get_spark
+
+from retaillake.utils.constants import SILVER_PATH
+
+logger = LoggerFactory.get_logger(__name__)
+
+
+def validate_silver() -> None:
+    """
+    Validate Silver Delta table.
+    """
+
+    spark = get_spark()
+
+    logger.info(
+        "Validating Silver Delta..."
     )
-    .config(
-        "spark.sql.catalog.spark_catalog",
-        "org.apache.spark.sql.delta.catalog.DeltaCatalog"
+
+    df: DataFrame = (
+        spark.read
+        .format("delta")
+        .load(SILVER_PATH)
     )
-)
 
-spark = configure_spark_with_delta_pip(builder).getOrCreate()
+    logger.info(
+        f"Silver Records = {df.count()}"
+    )
 
-df = spark.read.format("delta").load("/app/data/silver")
+    df.show(
+        10,
+        truncate=False
+    )
 
-print(df.count())
 
-df.show(10, truncate=False)
+if __name__ == "__main__":
+    validate_silver()

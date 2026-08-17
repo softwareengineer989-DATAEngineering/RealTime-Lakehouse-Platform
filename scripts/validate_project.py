@@ -34,7 +34,7 @@ def check(name, func):
 
 def validate_configs():
     from retaillake.configs.app_config import PROJECT_ROOT
-    from retaillake.configs.kafka_config import TOPICS
+    from retaillake.configs.kafka_defaults import TOPICS
     from retaillake.configs.datasets import get_orders_dataset
 
     print(PROJECT_ROOT)

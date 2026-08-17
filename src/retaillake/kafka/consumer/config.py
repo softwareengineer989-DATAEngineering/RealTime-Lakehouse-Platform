@@ -1,5 +1,5 @@
 from retaillake.configs.app_config import CONSUMER_NAME
-from retaillake.configs.kafka_config import (
+from retaillake.configs.kafka_defaults import (
     BOOTSTRAP_SERVERS,
     TOPICS
 )

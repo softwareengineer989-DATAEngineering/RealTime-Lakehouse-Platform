@@ -1,17 +1,35 @@
-from retaillake.spark.gold.aggregations import build_customer_metrics
-from retaillake.spark.gold.metrics import calculate_metrics
+from pyspark.sql import DataFrame
+
+from retaillake.logging.logger_factory import LoggerFactory
+
+from retaillake.spark.gold.aggregations import (
+    build_customer_metrics,
+)
+
+from retaillake.spark.gold.metrics import (
+    calculate_customer_metrics,
+)
+
+logger = LoggerFactory.get_logger(__name__)
 
 
-def transform(df):
+def transform_gold(
+    dataframe: DataFrame,
+) -> DataFrame:
     """
-    Execute Gold transformations.
+    Gold business transformations.
     """
 
-    df = build_customer_metrics(df)
+    logger.info(
+        "Executing Gold transformations..."
+    )
 
-    df = calculate_metrics(df)
+    dataframe = build_customer_metrics(
+        dataframe
+    )
 
-    # Temporary Console debugging.
-    print(df.columns)
+    dataframe = calculate_customer_metrics(
+        dataframe
+    )
 
-    return df
+    return dataframe
