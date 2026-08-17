@@ -1,8 +1,32 @@
-from retaillake.monitoring.pipeline_monitor import (
-    initialize_pipeline,
-    shutdown_pipeline,
+from retaillake.monitoring.pipeline_monitor import PipelineMonitor
+
+
+monitor = PipelineMonitor(
+
+    "Gold Streaming"
+
 )
 
-initialize_pipeline("Gold Pipeline")
+monitor.startup()
 
-shutdown_pipeline("Gold Pipeline")
+monitor.metrics.increment_processed(
+
+    100000
+
+)
+
+monitor.metrics.increment_invalid(
+
+    50
+
+)
+
+monitor.metrics.increment_failed(
+
+    5
+
+)
+
+monitor.metrics.increment_batch()
+
+monitor.shutdown()
