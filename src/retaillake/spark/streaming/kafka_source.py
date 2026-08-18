@@ -25,6 +25,7 @@ def create_kafka_source(topic: str | None = None) -> DataFrame:
         "orders.raw"
     )
 
+
     logger.info(
         "Creating Kafka streaming source "
         f"(Topic={kafka_topic})"
@@ -44,6 +45,10 @@ def create_kafka_source(topic: str | None = None) -> DataFrame:
         .option(
             "startingOffsets",
             "earliest"
+        )
+        .option(
+            "failOnDataLoss",
+            "false"
         )
         .load()
     )

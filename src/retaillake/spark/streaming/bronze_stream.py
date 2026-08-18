@@ -44,6 +44,7 @@ def run_bronze_stream() -> None:
         .select("data.*")
     )
 
+
     logger.info(
         "Writing Bronze Delta Stream..."
     )
