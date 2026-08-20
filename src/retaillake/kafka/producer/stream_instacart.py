@@ -13,7 +13,7 @@ from retaillake.kafka.producer.config import PRODUCER_CONFIG
 from retaillake.kafka.producer.delivery_report import delivery_report
 from retaillake.kafka.producer.partitioner import get_message_key
 from retaillake.kafka.producer.serializer import serialize
-from retaillake.kafka.streaming.shutdown import register_shutdown
+from retaillake.kafka.streaming.signal_registration import register_shutdown
 from retaillake.kafka.streaming.stream_engine import is_running
 
 from retaillake.utils.constants import (

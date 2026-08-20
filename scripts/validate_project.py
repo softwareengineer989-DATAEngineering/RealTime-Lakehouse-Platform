@@ -88,7 +88,7 @@ def validate_streaming():
 
 
 def validate_shutdown():
-    from retaillake.kafka.streaming.shutdown import register_shutdown
+    from retaillake.kafka.streaming.signal_registration import register_shutdown
 
     print(register_shutdown)
 

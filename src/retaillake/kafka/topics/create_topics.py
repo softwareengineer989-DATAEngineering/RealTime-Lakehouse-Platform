@@ -7,7 +7,7 @@ from retaillake.configs.kafka_defaults import BOOTSTRAP_SERVERS
 
 admin = AdminClient(
     {
-        "bootstrap.servers": BOOTSTRAP_SERVER
+        "bootstrap.servers": BOOTSTRAP_SERVERS
     }
 )
 

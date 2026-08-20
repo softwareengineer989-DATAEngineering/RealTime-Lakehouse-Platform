@@ -22,7 +22,7 @@ def write_bronze(
         f"to {BRONZE_PATH}"
     )
 
-    return (
+    query = (
         dataframe
         .writeStream
         .format("delta")
@@ -36,3 +36,8 @@ def write_bronze(
         )
         .start(BRONZE_PATH)
     )
+
+    logger.info("Bronze Streaming Query Started")
+    logger.info(f"Query ID : {query.id}")
+
+    return query
