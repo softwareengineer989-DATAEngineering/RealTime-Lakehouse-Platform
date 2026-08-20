@@ -1,9 +1,10 @@
 from retaillake.runtime.checkpoint_manager import CheckpointManager
-
+from retaillake.monitoring.alert_manager import AlertManager
 from retaillake.logging.logger_factory import LoggerFactory
 
 logger = LoggerFactory.get_logger(__name__)
 
+alerts = AlertManager()
 
 class RecoveryManager:
     """
@@ -37,4 +38,9 @@ class RecoveryManager:
 
         logger.info(
             "Recovery initialization complete."
+        )
+
+        alerts.info(
+            "Recovery",
+            "Recovery initialization completed."
         )

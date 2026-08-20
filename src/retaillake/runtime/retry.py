@@ -11,11 +11,13 @@ from typing import Callable, TypeVar
 
 from retaillake.logging.logger_factory import LoggerFactory
 from retaillake.runtime.retry_policy import RetryPolicy
+from retaillake.monitoring.alert_manager import AlertManager
 
 T = TypeVar("T")
 
 logger = LoggerFactory.get_logger(__name__)
 
+alerts = AlertManager()
 
 def run_with_retry(
     operation: Callable[[], T],
@@ -60,6 +62,12 @@ def run_with_retry(
                     "%s failed after %s attempts.",
                     operation_name,
                     attempt,
+                )
+
+                alerts.error(
+                    "Retry",
+                    f"{operation_name} retry policy exhausted after "
+                    f"{attempt} attempts."
                 )
 
                 raise
