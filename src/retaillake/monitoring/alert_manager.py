@@ -1,4 +1,6 @@
-from datetime import datetime
+from datetime import datetime, UTC
+
+
 
 from retaillake.logging.logger_factory import LoggerFactory
 
@@ -24,7 +26,7 @@ class AlertManager:
 
         logger.warning(banner)
         logger.warning(f"ALERT LEVEL : {level.value}")
-        logger.warning(f"TIME        : {datetime.utcnow()}")
+        logger.warning(f"TIME        : {datetime.now(UTC)}")
         logger.warning(f"COMPONENT   : {component}")
         logger.warning(f"MESSAGE     : {message}")
         logger.warning(banner)

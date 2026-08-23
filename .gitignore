@@ -6,6 +6,17 @@ __pycache__/
 .venv/
 venv/
 *.pyc
+.pytype/
+.coverage
+.mypy_cache/
+
+.ruff_cache/
+
+htmlcov/
+
+dist/
+
+build/
 
 # IDE
 .idea/
@@ -47,8 +58,11 @@ checkpoints/
 
 
 
+
+
 # Spark event logs
 spark-events/
+
 
 
 

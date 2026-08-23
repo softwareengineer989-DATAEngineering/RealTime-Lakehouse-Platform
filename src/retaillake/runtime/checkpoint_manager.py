@@ -61,3 +61,4 @@ class CheckpointManager:
             "path": str(self.checkpoint_path),
             "exists": self.checkpoint_path.exists()
         }
+
