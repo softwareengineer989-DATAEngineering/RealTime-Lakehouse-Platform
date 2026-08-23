@@ -56,7 +56,7 @@ data/
 # Spark checkpoints
 checkpoints/
 
-.project_audit_scripts/
+
 
 
 
