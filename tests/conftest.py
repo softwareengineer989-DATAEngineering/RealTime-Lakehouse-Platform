@@ -20,3 +20,4 @@ pytest_plugins = [
     "tests.fixtures.spark_session",
     "tests.fixtures.sample_data",
 ]
+
