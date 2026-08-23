@@ -4,7 +4,7 @@ python-dotenv
 pyyaml
 
 confluent-kafka==2.6.1
-pandas==2.2.3
+pandas==3.0.5
 python-dotenv==1.0.1
 loguru==0.7.3
 
