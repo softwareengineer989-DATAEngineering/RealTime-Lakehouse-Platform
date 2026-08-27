@@ -1,0 +1,34 @@
+Dataset: 100K
+Run: 01
+
+Start Time:
+2026-08-26_13-16-37
+
+End Time:
+
+Duration:
+
+Operator:
+
+Git Branch:
+feature/sprint-15.5-repository-polish
+
+Git Commit:
+
+Python:
+3.13.4
+
+Java:
+17.0.20.1
+
+Spark:
+4.0.0
+
+Kafka:
+7.7.1
+
+Docker:
+Running
+
+Status:
+Environment Ready

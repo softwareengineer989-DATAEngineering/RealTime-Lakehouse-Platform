@@ -2,7 +2,7 @@ from retaillake.configs.app_config import DATASETS
 
 USE_SAMPLE_DATA = True
 
-SAMPLE_ORDERS = DATASETS / "sample" / "orders_100k.csv"
+SAMPLE_ORDERS = DATASETS / "sample" / "orders_500k.csv"
 
 FULL_ORDERS = DATASETS / "raw" / "instacart" / "orders.csv"
 
