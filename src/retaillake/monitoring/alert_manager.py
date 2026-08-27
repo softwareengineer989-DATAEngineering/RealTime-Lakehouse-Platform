@@ -1,4 +1,4 @@
-from datetime import datetime, UTC
+from datetime import datetime, timezone
 
 
 
@@ -26,7 +26,7 @@ class AlertManager:
 
         logger.warning(banner)
         logger.warning(f"ALERT LEVEL : {level.value}")
-        logger.warning(f"TIME        : {datetime.now(UTC)}")
+        logger.warning(f"TIME        : {datetime.now(timezone.utc)}")
         logger.warning(f"COMPONENT   : {component}")
         logger.warning(f"MESSAGE     : {message}")
         logger.warning(banner)
