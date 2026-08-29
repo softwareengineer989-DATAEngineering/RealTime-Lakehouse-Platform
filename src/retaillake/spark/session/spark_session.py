@@ -2,6 +2,7 @@ from pyspark.sql import SparkSession
 
 from retaillake.utils.constants import SPARK_APP_NAME
 from retaillake.spark.runtime.spark_config import SPARK_CONFIG
+from delta import configure_spark_with_delta_pip
 
 from retaillake.logging.logger_factory import LoggerFactory
 
@@ -15,6 +16,15 @@ class SparkSessionFactory:
     Responsible for creating and configuring the
     platform SparkSession.
     """
+
+    @staticmethod
+    def _configure_builder(builder):
+
+        for key, value in SPARK_CONFIG.items():
+            builder = builder.config(key, value)
+
+        return configure_spark_with_delta_pip(builder)
+
 
     @staticmethod
     def create() -> SparkSession:
@@ -31,12 +41,7 @@ class SparkSessionFactory:
 
         )
 
-        for key, value in SPARK_CONFIG.items():
-
-            builder = builder.config(
-                key,
-                value,
-            )
+        builder = SparkSessionFactory._configure_builder(builder)
 
         try:
 

@@ -1,0 +1,75 @@
+[
+    {
+        "component": "Runtime",
+        "passed": true,
+        "message": "Spark runtime initialized successfully.",
+        "metrics": {
+            "spark_version": "4.0.0",
+            "master": "local[*]",
+            "application_name": "RealTime-Lakehouse-Platform",
+            "python_version": "3.13",
+            "executor_memory": "2g",
+            "driver_memory": "2g"
+        },
+        "timestamp": "2026-08-29T23:34:06.145073+00:00"
+    },
+    {
+        "component": "Environment",
+        "passed": true,
+        "message": "Environment validated successfully.",
+        "metrics": {
+            "JAVA_HOME": "C:\\Users\\travi\\AppData\\Local\\Programs\\Eclipse Adoptium\\jdk-17.0.20.101-hotspot\\",
+            "HADOOP_HOME": "C:\\hadoop",
+            "platform": "Windows-11-10.0.26200-SP0",
+            "python": "3.13.4",
+            "processor": "Intel64 Family 6 Model 151 Stepping 5, GenuineIntel",
+            "docker": false
+        },
+        "timestamp": "2026-08-29T23:34:06.167262+00:00"
+    },
+    {
+        "component": "Bronze",
+        "passed": true,
+        "message": "Bronze validation passed.",
+        "metrics": {
+            "row_count": 1800000,
+            "columns": 7,
+            "schema": "struct<order_id:int,user_id:int,eval_set:string,order_number:int,order_dow:int,order_hour_of_day:int,days_since_prior_order:double>"
+        },
+        "timestamp": "2026-08-29T23:34:13.716818+00:00"
+    },
+    {
+        "component": "Silver",
+        "passed": true,
+        "message": "Silver validation passed.",
+        "metrics": {
+            "row_count": 1800000,
+            "columns": 9,
+            "schema": "struct<order_id:int,user_id:int,eval_set:string,order_number:int,order_dow:int,order_hour_of_day:int,days_since_previous_order:double,is_valid:boolean,is_first_order:boolean>"
+        },
+        "timestamp": "2026-08-29T23:34:15.278044+00:00"
+    },
+    {
+        "component": "Gold",
+        "passed": true,
+        "message": "Gold validation passed.",
+        "metrics": {
+            "row_count": 60078,
+            "columns": 10,
+            "schema": "struct<user_id:int,total_orders:bigint,avg_order_hour:double,avg_days_between_orders:double,first_order:int,last_order:int,is_repeat_customer:boolean,customer_order_span:int,shopping_window:string,customer_segment:string>"
+        },
+        "timestamp": "2026-08-29T23:34:16.708605+00:00"
+    },
+    {
+        "component": "Quality",
+        "passed": true,
+        "message": "Quality validation completed.",
+        "metrics": {
+            "row_count": 1800000,
+            "column_count": 9,
+            "duplicate_rows": 800000,
+            "null_customer_id": "N/A"
+        },
+        "timestamp": "2026-08-29T23:34:21.271280+00:00"
+    }
+]
