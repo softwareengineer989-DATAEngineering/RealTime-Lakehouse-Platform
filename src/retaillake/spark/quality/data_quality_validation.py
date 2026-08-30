@@ -1,3 +1,19 @@
+"""
+Pipeline Data Quality Validation
+
+Applies business validation rules to Spark DataFrames.
+
+Responsibilities
+----------------
+- Required field validation
+- Business rule validation
+- Row-level quality flags
+- Produces is_valid column
+
+This module is separate from the platform validation framework
+located under src/retaillake/validation/.
+"""
+
 from pyspark.sql import DataFrame
 from pyspark.sql.functions import col
 

@@ -26,6 +26,10 @@ def run():
 
         EnvironmentValidator(),
 
+        ConfigurationValidator(),
+
+        KafkaValidator(),
+
         BronzeValidator(),
 
         SilverValidator(),
@@ -34,47 +38,142 @@ def run():
 
         QualityValidator(),
 
-        KafkaValidator(),
-
-        ConfigurationValidator(),
-
-
-
     ]
 
     results = []
 
+    execution_summary = []
+
+    import time
+
+    total_start = time.perf_counter()
+
     for validator in validators:
 
-        result = validator.validate()
+        validator_name = validator.__class__.__name__
+
+        start = time.perf_counter()
+
+        try:
+
+            result = validator.validate()
+
+        except Exception as ex:
+
+            from retaillake.validation.validation_result import ValidationResult
+
+            result = ValidationResult(
+
+                component=validator_name,
+
+                passed=False,
+
+                message=str(ex),
+
+                metrics={},
+
+            )
+
+        duration = round(
+
+            time.perf_counter() - start,
+
+            3,
+
+        )
+
+        result.metrics["execution_time_seconds"] = duration
+
+        execution_summary.append(
+
+            {
+
+                "component": result.component,
+
+                "passed": result.passed,
+
+                "duration": duration,
+
+            }
+
+        )
 
         results.append(result)
 
         print("=" * 70)
+
         print(f"Component : {result.component}")
+
         print(f"PASS      : {result.passed}")
+
+        print(f"Duration  : {duration:.3f} sec")
+
         print(f"Message   : {result.message}")
+
         print(f"Metrics   : {result.metrics}")
 
-    report_path = Path(
-        "validation_artifacts/reports/platform_validation_report.json"
+    total_duration = round(
+
+        time.perf_counter() - total_start,
+
+        3,
+
+    )
+
+    report_directory = Path(
+
+        "validation_artifacts/reports"
+
+    )
+
+    report_directory.mkdir(
+
+        parents=True,
+
+        exist_ok=True,
+
     )
 
     write_report(
+
         results,
-        report_path,
+
+        report_directory,
+
     )
 
-    failed = any(
-        not result.passed
+    passed = sum(
+
+        result.passed
+
         for result in results
+
     )
+
+    failed = len(results) - passed
+
+    print()
+
+    print("=" * 70)
+
+    print("Validation Summary")
+
+    print("=" * 70)
+
+    print(f"Total Validators : {len(results)}")
+
+    print(f"Passed           : {passed}")
+
+    print(f"Failed           : {failed}")
+
+    print(f"Duration         : {total_duration:.3f} sec")
+
+    print(f"Reports          : {report_directory}")
+
+    print("=" * 70)
 
     if failed:
+
         sys.exit(1)
 
     sys.exit(0)
-
-
-if __name__ == "__main__":
-    run()
