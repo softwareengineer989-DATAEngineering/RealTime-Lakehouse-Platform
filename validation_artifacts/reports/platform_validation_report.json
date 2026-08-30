@@ -11,7 +11,7 @@
             "executor_memory": "2g",
             "driver_memory": "2g"
         },
-        "timestamp": "2026-08-29T23:34:06.145073+00:00"
+        "timestamp": "2026-08-30T00:14:57.726651+00:00"
     },
     {
         "component": "Environment",
@@ -25,7 +25,7 @@
             "processor": "Intel64 Family 6 Model 151 Stepping 5, GenuineIntel",
             "docker": false
         },
-        "timestamp": "2026-08-29T23:34:06.167262+00:00"
+        "timestamp": "2026-08-30T00:14:57.751171+00:00"
     },
     {
         "component": "Bronze",
@@ -36,7 +36,7 @@
             "columns": 7,
             "schema": "struct<order_id:int,user_id:int,eval_set:string,order_number:int,order_dow:int,order_hour_of_day:int,days_since_prior_order:double>"
         },
-        "timestamp": "2026-08-29T23:34:13.716818+00:00"
+        "timestamp": "2026-08-30T00:15:04.521797+00:00"
     },
     {
         "component": "Silver",
@@ -47,7 +47,7 @@
             "columns": 9,
             "schema": "struct<order_id:int,user_id:int,eval_set:string,order_number:int,order_dow:int,order_hour_of_day:int,days_since_previous_order:double,is_valid:boolean,is_first_order:boolean>"
         },
-        "timestamp": "2026-08-29T23:34:15.278044+00:00"
+        "timestamp": "2026-08-30T00:15:05.885229+00:00"
     },
     {
         "component": "Gold",
@@ -58,7 +58,7 @@
             "columns": 10,
             "schema": "struct<user_id:int,total_orders:bigint,avg_order_hour:double,avg_days_between_orders:double,first_order:int,last_order:int,is_repeat_customer:boolean,customer_order_span:int,shopping_window:string,customer_segment:string>"
         },
-        "timestamp": "2026-08-29T23:34:16.708605+00:00"
+        "timestamp": "2026-08-30T00:15:07.178434+00:00"
     },
     {
         "component": "Quality",
@@ -70,6 +70,34 @@
             "duplicate_rows": 800000,
             "null_customer_id": "N/A"
         },
-        "timestamp": "2026-08-29T23:34:21.271280+00:00"
+        "timestamp": "2026-08-30T00:15:10.737206+00:00"
+    },
+    {
+        "component": "Kafka",
+        "passed": true,
+        "message": "Kafka configuration validated successfully.",
+        "metrics": {
+            "bootstrap_servers": true,
+            "producer_timeout": true,
+            "acks": true,
+            "retries": true,
+            "configured_properties": 4
+        },
+        "timestamp": "2026-08-30T00:15:10.737463+00:00"
+    },
+    {
+        "component": "Configuration",
+        "passed": true,
+        "message": "Platform configuration validated successfully.",
+        "metrics": {
+            "bronze_exists": true,
+            "silver_exists": true,
+            "gold_exists": true,
+            "checkpoint_exists": true,
+            "required_paths": 4,
+            "missing_paths": 0,
+            "configured_constants": 2
+        },
+        "timestamp": "2026-08-30T00:15:10.737755+00:00"
     }
 ]

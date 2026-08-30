@@ -13,6 +13,11 @@ from retaillake.validation.validate_runtime import RuntimeValidator
 
 from retaillake.validation.validate_environment import EnvironmentValidator
 
+from retaillake.validation.validate_kafka import KafkaValidator
+
+from retaillake.validation.validate_configuration import ConfigurationValidator
+
+
 def run():
 
     validators = [
@@ -28,6 +33,12 @@ def run():
         GoldValidator(),
 
         QualityValidator(),
+
+        KafkaValidator(),
+
+        ConfigurationValidator(),
+
+
 
     ]
 
