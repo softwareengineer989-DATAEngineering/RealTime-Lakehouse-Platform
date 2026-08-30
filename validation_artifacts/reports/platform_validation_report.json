@@ -1,0 +1,129 @@
+{
+    "generated_at": "2026-08-30T19:00:10.460608",
+    "total_validators": 8,
+    "passed": 8,
+    "failed": 0,
+    "results": [
+        {
+            "component": "Runtime",
+            "passed": true,
+            "message": "Spark runtime initialized successfully.",
+            "metrics": {
+                "spark_version": "4.0.0",
+                "master": "local[*]",
+                "application_name": "RealTime-Lakehouse-Platform",
+                "python_version": "3.13",
+                "executor_memory": "2g",
+                "driver_memory": "2g",
+                "execution_time_seconds": 0.038
+            },
+            "timestamp": "2026-08-30T22:59:54.409757+00:00"
+        },
+        {
+            "component": "Environment",
+            "passed": true,
+            "message": "Environment validated successfully.",
+            "metrics": {
+                "JAVA_HOME": "C:\\Users\\travi\\AppData\\Local\\Programs\\Eclipse Adoptium\\jdk-17.0.20.101-hotspot\\",
+                "HADOOP_HOME": "C:\\hadoop",
+                "platform": "Windows-11-10.0.26200-SP0",
+                "python": "3.13.4",
+                "processor": "Intel64 Family 6 Model 151 Stepping 5, GenuineIntel",
+                "docker": false,
+                "execution_time_seconds": 0.028
+            },
+            "timestamp": "2026-08-30T22:59:54.438528+00:00"
+        },
+        {
+            "component": "Configuration",
+            "passed": true,
+            "message": "Platform configuration validated successfully.",
+            "metrics": {
+                "bronze_exists": true,
+                "silver_exists": true,
+                "gold_exists": true,
+                "checkpoint_exists": true,
+                "required_paths": 4,
+                "missing_paths": 0,
+                "configured_constants": 2,
+                "execution_time_seconds": 0.0
+            },
+            "timestamp": "2026-08-30T22:59:54.439388+00:00"
+        },
+        {
+            "component": "Kafka",
+            "passed": true,
+            "message": "Kafka configuration validated successfully.",
+            "metrics": {
+                "bootstrap_servers": true,
+                "producer_timeout": true,
+                "acks": true,
+                "retries": true,
+                "configured_properties": 4,
+                "execution_time_seconds": 0.0
+            },
+            "timestamp": "2026-08-30T22:59:54.439656+00:00"
+        },
+        {
+            "component": "Bronze",
+            "passed": true,
+            "message": "Bronze validation passed.",
+            "metrics": {
+                "table_exists": true,
+                "row_count": 1800000,
+                "column_count": 7,
+                "schema": "struct<order_id:int,user_id:int,eval_set:string,order_number:int,order_dow:int,order_hour_of_day:int,days_since_prior_order:double>",
+                "partition_columns": [],
+                "delta_version": 14,
+                "history_entries": 15,
+                "execution_time_seconds": 8.889
+            },
+            "timestamp": "2026-08-30T23:00:03.328700+00:00"
+        },
+        {
+            "component": "Silver",
+            "passed": true,
+            "message": "Silver validation passed.",
+            "metrics": {
+                "table_exists": true,
+                "row_count": 1800000,
+                "column_count": 9,
+                "schema": "struct<order_id:int,user_id:int,eval_set:string,order_number:int,order_dow:int,order_hour_of_day:int,days_since_previous_order:double,is_valid:boolean,is_first_order:boolean>",
+                "partition_columns": [],
+                "delta_version": 14,
+                "history_entries": 15,
+                "execution_time_seconds": 2.555
+            },
+            "timestamp": "2026-08-30T23:00:05.884180+00:00"
+        },
+        {
+            "component": "Gold",
+            "passed": true,
+            "message": "Gold validation passed.",
+            "metrics": {
+                "table_exists": true,
+                "row_count": 60078,
+                "column_count": 10,
+                "schema": "struct<user_id:int,total_orders:bigint,avg_order_hour:double,avg_days_between_orders:double,first_order:int,last_order:int,is_repeat_customer:boolean,customer_order_span:int,shopping_window:string,customer_segment:string>",
+                "partition_columns": [],
+                "delta_version": 12,
+                "history_entries": 13,
+                "execution_time_seconds": 2.069
+            },
+            "timestamp": "2026-08-30T23:00:07.953015+00:00"
+        },
+        {
+            "component": "Quality",
+            "passed": true,
+            "message": "Quality validation completed.",
+            "metrics": {
+                "row_count": 1800000,
+                "column_count": 9,
+                "duplicate_rows": 800000,
+                "null_customer_id": "N/A",
+                "execution_time_seconds": 2.507
+            },
+            "timestamp": "2026-08-30T23:00:10.459966+00:00"
+        }
+    ]
+}

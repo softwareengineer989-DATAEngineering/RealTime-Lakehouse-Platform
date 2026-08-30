@@ -1,7 +1,7 @@
 from retaillake.kafka.producer.delivery_report import delivery_report
 from retaillake.kafka.producer.partitioner import get_message_key
 from retaillake.kafka.producer.producer_factory import ProducerFactory
-from retaillake.kafka.producer.serializer import serialize
+from retaillake.kafka.producer.record_serializer import serialize
 
 from retaillake.logging.logger_factory import LoggerFactory
 
