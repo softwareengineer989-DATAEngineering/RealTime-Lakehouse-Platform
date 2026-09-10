@@ -62,41 +62,42 @@ Expected
 
 ---
 
+# Runtime Environment
+
+The RealTime Lakehouse Platform runs Kafka inside a Docker container.
+
+Kafka administration commands are executed using:
+
+docker exec kafka
+
+rather than a host-installed Kafka CLI.
+
+This approach keeps the developer workstation lightweight and ensures all contributors use the same Kafka version.
+
 # Kafka Topic Administration
 
 List topics
 
 ```bash
-kafka-topics --bootstrap-server localhost:9092 --list
+docker exec kafka kafka-topics --bootstrap-server localhost:9092 --list
 ```
 
 Describe topic
 
 ```bash
-kafka-topics \
---bootstrap-server localhost:9092 \
---describe \
---topic orders
+docker exec kafka kafka-topics --bootstrap-server localhost:9092 --describe --topic orders.raw
 ```
 
 Create topic
 
 ```bash
-kafka-topics \
---create \
---bootstrap-server localhost:9092 \
---topic orders \
---partitions 4 \
---replication-factor 1
+docker exec kafka kafka-topics --bootstrap-server localhost:9092 --create --topic orders.raw --partitions 6 --replication-factor 1
 ```
 
 Delete topic
 
 ```bash
-kafka-topics \
---delete \
---bootstrap-server localhost:9092 \
---topic orders
+docker exec kafka kafka-topics --delete --bootstrap-server localhost:9092 --topic orders.raw
 ```
 
 ---
@@ -123,6 +124,8 @@ docker compose logs producer
 
 ---
 
+
+
 # Consumer Operations
 
 Spark Streaming consumes messages.
@@ -136,18 +139,13 @@ Verify:
 List consumer groups
 
 ```bash
-kafka-consumer-groups \
---bootstrap-server localhost:9092 \
---list
+docker exec kafka kafka-consumer-groups --bootstrap-server localhost:9092 --list
 ```
 
 Describe group
 
 ```bash
-kafka-consumer-groups \
---bootstrap-server localhost:9092 \
---describe \
---group bronze-consumer
+docker exec kafka kafka-consumer-groups --bootstrap-server localhost:9092 --describe --group bronze-consumer
 ```
 
 ---
@@ -269,9 +267,9 @@ Recommended
 
 ---
 
-# Related Documents
+# Related Documentation
 
-- README.md
-- docs/architecture/kafka-topic-design.md
-- ADR-001 Kafka Container Choice
-- Docker Operations Runbook
+- [Platform Architecture](../architecture/ARCHITECTURE.md)
+- [Streaming Data Flow](../architecture/DATA_FLOW.md)
+- [Troubleshooting Guide](troubleshooting.md)
+- [Project Overview](../../README.md)

@@ -76,34 +76,6 @@ Configure:
 
 ---
 
-# Running Tests
-
-Run all tests
-
-```bash
-pytest
-```
-
-Run coverage
-
-```bash
-pytest --cov=src
-```
-
-Run unit tests
-
-```bash
-pytest tests/unit
-```
-
-Run integration tests
-
-```bash
-pytest tests/integration
-```
-
----
-
 # Running the Platform
 
 Start Docker services
@@ -156,6 +128,44 @@ python src/retaillake/spark/gold/run_gold_stream.py
 
 ---
 
+## Kafka CLI
+
+Kafka administration commands are executed from inside the Kafka container.
+
+Example:
+
+docker exec kafka kafka-topics --bootstrap-server localhost:9092 --list
+
+# Running Tests
+
+Run all tests
+
+```bash
+pytest
+```
+
+Run coverage
+
+```bash
+pytest --cov=src
+```
+
+Run unit tests
+
+```bash
+pytest tests/unit
+```
+
+Run integration tests
+
+```bash
+pytest tests/integration
+```
+
+---
+
+
+
 # Development Workflow
 
 1. Create feature branch
@@ -201,10 +211,9 @@ GitHub Actions
 
 ---
 
-# References
+# Related Documentation
 
-- README.md
-- SECURITY.md
-- tests/README.md
-- docs/architecture/
-- docs/adr/
+- [Docker Operations](docker-operations.md)
+- [Kafka Operations](kafka-operations.md)
+- [Spark Operations](spark-operations.md)
+- [Project Overview](../../README.md)

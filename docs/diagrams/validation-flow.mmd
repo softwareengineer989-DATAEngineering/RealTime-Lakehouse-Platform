@@ -1,0 +1,63 @@
+flowchart LR
+
+A[Retail Dataset]
+
+B[Kafka Producer]
+
+C[(Kafka Topic)]
+
+D[Bronze Streaming]
+
+E[(Bronze Delta)]
+
+F[Schema Validation]
+
+G[Silver Streaming]
+
+H[(Silver Delta)]
+
+I[Business Transformations]
+
+J[Gold Aggregation]
+
+K[(Gold Delta)]
+
+L[Validation Framework]
+
+M[Execution Reports]
+
+N[Runtime Metrics]
+
+O[Validation Artifacts]
+
+P[Invalid Records]
+
+A --> B
+
+B --> C
+
+C --> D
+
+D --> E
+
+E --> F
+
+F -->|Valid| G
+
+F -->|Invalid| P
+
+G --> H
+
+H --> I
+
+I --> J
+
+J --> K
+
+K --> L
+
+L --> M
+
+L --> N
+
+L --> O

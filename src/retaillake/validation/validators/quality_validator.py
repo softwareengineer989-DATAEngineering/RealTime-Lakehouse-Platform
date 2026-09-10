@@ -10,16 +10,14 @@ from retaillake.validation.validation_result import ValidationResult
 
 class QualityValidator(BaseValidator):
 
-    def __init__(self):
-
-        self.spark: SparkSession = get_spark()
-
     def validate(self) -> ValidationResult:
 
         try:
 
+            spark = get_spark()
+
             df = (
-                self.spark
+                 spark
                 .read
                 .format("delta")
                 .load(SILVER_PATH)

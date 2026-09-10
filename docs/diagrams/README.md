@@ -1,304 +1,114 @@
-# Architecture Diagrams
+# Architecture Diagram Index
 
-## Purpose
+This directory contains the source-controlled architecture diagrams for the RealTime-Lakehouse-Platform.
 
-This directory contains the architectural diagrams used throughout the Real-Time Lakehouse Platform documentation.
-
-The diagrams provide visual representations of the platform's architecture, streaming pipeline, infrastructure, and operational workflows.
-
-Production screenshots and finalized diagrams will be added after completion of the production-scale validation using the complete Instacart dataset.
+The diagrams document the implemented local streaming lakehouse architecture and complement the architecture documentation.
 
 ---
 
-# Diagram Standards
+# Diagram Lifecycle
 
-All diagrams should:
+Each architecture diagram exists in three forms.
 
-- Follow enterprise architecture conventions.
-- Use consistent naming.
-- Clearly identify system boundaries.
-- Minimize visual complexity.
-- Include directional data flow.
-- Match the implemented platform.
-- Remain version controlled.
+```
+Draw.io
+     │
+     ▼
+Mermaid
+     │
+     ▼
+PNG
+```
+
+The Draw.io file is the editable source.
+
+The Mermaid file is the version-controlled text representation.
+
+The PNG file is the rendered image used by the repository documentation.
 
 ---
 
-# Planned Diagrams
+# Diagram Inventory
 
-## 1. High-Level Platform Architecture
-
-Illustrates:
-
-- Docker
-- Kafka
-- Spark
-- Delta Lake
-- Storage
-- Monitoring
-
-Filename
-
-```
-platform-architecture.png
-```
+| Diagram | Draw.io | Mermaid | PNG |
+|----------|----------|----------|------|
+| Platform Architecture | ✓ | ✓ | ✓ |
+| Kafka Data Flow | ✓ | ✓ | ✓ |
+| Streaming Pipeline | ✓ | ✓ | ✓ |
+| Validation Flow | ✓ | ✓ | ✓ |
+| Repository Component Map | ✓ | ✓ | ✓ |
 
 ---
 
-## 2. End-to-End Streaming Pipeline
-
-Illustrates
+# Directory Layout
 
 ```
-Dataset
-
-↓
-
-Kafka Producer
-
-↓
-
-Kafka Topic
-
-↓
-
-Bronze Stream
-
-↓
-
-Silver Stream
-
-↓
-
-Gold Stream
-
-↓
-
-Analytics
-```
-
-Filename
-
-```
-streaming-pipeline.png
-```
-
----
-
-## 3. Kafka Architecture
-
-Illustrates
-
-- Producer
-- Broker
-- Topic
-- Partitions
-- Consumer Group
-
-Filename
-
-```
-kafka-architecture.png
-```
-
----
-
-## 4. Spark Streaming Architecture
-
-Illustrates
-
-- Kafka Source
-- Structured Streaming
-- Delta Sink
-- Checkpointing
-
-Filename
-
-```
-spark-streaming.png
-```
-
----
-
-## 5. Bronze → Silver → Gold Flow
-
-Illustrates
-
-- Raw ingestion
-- Cleansing
-- Business transformations
-- Aggregations
-
-Filename
-
-```
-medallion-architecture.png
-```
-
----
-
-## 6. Repository Architecture
-
-Illustrates
-
-```
-src/
-
-tests/
-
 docs/
 
-docker/
-
-datasets/
-
-scripts/
-```
-
-Filename
-
-```
-repository-structure.png
-```
-
----
-
-## 7. Runtime Components
-
-Illustrates
-
-Running services
-
-- Docker
-- Kafka
-- Spark
-- Producer
-- Streaming jobs
-
-Filename
-
-```
-runtime-components.png
+├── diagrams/
+│   ├── README.md
+│   ├── platform-architecture.mmd
+│   ├── kafka-flow.mmd
+│   ├── streaming-sequence.mmd
+│   ├── validation-flow.mmd
+│   └── repository-map.mmd
+│
+├── diagrams-source/
+│   ├── platform-architecture.drawio
+│   ├── kafka-flow.drawio
+│   ├── streaming-sequence.drawio
+│   ├── validation-flow.drawio
+│   └── repository-map.drawio
+│
+└── assets/
+    ├── platform-architecture.png
+    ├── kafka-flow.png
+    ├── streaming-sequence.png
+    ├── validation-flow.png
+    └── repository-map.png
 ```
 
 ---
 
-## 8. CI/CD Workflow
+# Documentation References
 
-Illustrates
-
-```
-Developer
-
-↓
-
-Feature Branch
-
-↓
-
-Commit
-
-↓
-
-GitHub Actions
-
-↓
-
-Tests
-
-↓
-
-Coverage
-
-↓
-
-PR
-
-↓
-
-Review
-
-↓
-
-Merge
-```
-
-Filename
-
-```
-ci-cd-workflow.png
-```
-
----
-
-## 9. Production Validation Evidence
-
-The following screenshots will be captured during Sprint 15.5 Batch 4.
-
-- Docker containers
-- Kafka topics
-- Producer execution
-- Spark streaming jobs
-- Bronze output
-- Silver output
-- Gold output
-- Delta tables
-- GitHub Actions passing
-- Test coverage
-- Runtime logs
-- Performance metrics
-
----
-
-# Recommended Tools
-
-The following tools are recommended for maintaining architecture diagrams.
-
-- diagrams.net (Draw.io)
-- Mermaid
-- PlantUML
-- Excalidraw
-- Lucidchart
-
----
-
-# Naming Convention
-
-```
-<component>-<purpose>.png
-```
-
-Examples
-
-```
-platform-architecture.png
-
-streaming-pipeline.png
-
-spark-streaming.png
-
-ci-cd-workflow.png
-```
-
----
-
-# Future Enhancements
-
-During Sprint 16+ the diagram catalog will be expanded to include:
-
-- Deployment architecture
-- Monitoring architecture
-- Platform engineering workflows
-- Observability architecture
-- Disaster recovery
-- Data lineage
-- Security architecture
-
----
-
-# Related Documentation
+The diagrams support the following documents.
 
 - README.md
-- docs/architecture/
-- docs/adr/
-- docs/runbooks/
+- ARCHITECTURE.md
+- DATA_FLOW.md
+- COMPONENTS.md
+- Validation Runbook
+
+---
+
+# Version Control
+
+Draw.io, Mermaid source, and rendered PNG images should be committed together to ensure that editable and rendered representations remain synchronized.
+
+---
+
+# Scope
+
+The diagrams represent the implemented local platform only.
+
+They intentionally avoid depicting technologies that are not part of this repository.
+
+---
+
+# Asset Synchronization Policy
+
+Each architecture diagram is maintained in three synchronized representations:
+
+1. **Draw.io (.drawio)** – authoritative editable source.
+2. **Mermaid (.mmd)** – version-controlled text representation used for reviews and Git diffs.
+3. **PNG (.png)** – rendered asset used by the repository documentation.
+
+When a diagram changes:
+
+1. Update the Draw.io source.
+2. Regenerate the Mermaid representation if the logical structure changes.
+3. Export a new PNG.
+4. Commit all three artifacts together.
+
+This workflow ensures the documentation remains accurate, reviewable, and easy to maintain.

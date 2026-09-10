@@ -1,5 +1,5 @@
 {
-    "generated_at": "2026-08-30T19:00:10.460608",
+    "generated_at": "2026-09-10T16:00:45.429003",
     "total_validators": 8,
     "passed": 8,
     "failed": 0,
@@ -15,9 +15,9 @@
                 "python_version": "3.13",
                 "executor_memory": "2g",
                 "driver_memory": "2g",
-                "execution_time_seconds": 0.038
+                "execution_time_seconds": 5.519
             },
-            "timestamp": "2026-08-30T22:59:54.409757+00:00"
+            "timestamp": "2026-09-10T20:00:27.478476+00:00"
         },
         {
             "component": "Environment",
@@ -30,9 +30,9 @@
                 "python": "3.13.4",
                 "processor": "Intel64 Family 6 Model 151 Stepping 5, GenuineIntel",
                 "docker": false,
-                "execution_time_seconds": 0.028
+                "execution_time_seconds": 0.031
             },
-            "timestamp": "2026-08-30T22:59:54.438528+00:00"
+            "timestamp": "2026-09-10T20:00:27.510097+00:00"
         },
         {
             "component": "Configuration",
@@ -48,7 +48,7 @@
                 "configured_constants": 2,
                 "execution_time_seconds": 0.0
             },
-            "timestamp": "2026-08-30T22:59:54.439388+00:00"
+            "timestamp": "2026-09-10T20:00:27.510538+00:00"
         },
         {
             "component": "Kafka",
@@ -62,7 +62,7 @@
                 "configured_properties": 4,
                 "execution_time_seconds": 0.0
             },
-            "timestamp": "2026-08-30T22:59:54.439656+00:00"
+            "timestamp": "2026-09-10T20:00:27.510753+00:00"
         },
         {
             "component": "Bronze",
@@ -70,15 +70,15 @@
             "message": "Bronze validation passed.",
             "metrics": {
                 "table_exists": true,
-                "row_count": 1800000,
+                "row_count": 3521083,
                 "column_count": 7,
                 "schema": "struct<order_id:int,user_id:int,eval_set:string,order_number:int,order_dow:int,order_hour_of_day:int,days_since_prior_order:double>",
                 "partition_columns": [],
-                "delta_version": 14,
-                "history_entries": 15,
-                "execution_time_seconds": 8.889
+                "delta_version": 18,
+                "history_entries": 19,
+                "execution_time_seconds": 10.27
             },
-            "timestamp": "2026-08-30T23:00:03.328700+00:00"
+            "timestamp": "2026-09-10T20:00:37.781229+00:00"
         },
         {
             "component": "Silver",
@@ -86,15 +86,15 @@
             "message": "Silver validation passed.",
             "metrics": {
                 "table_exists": true,
-                "row_count": 1800000,
+                "row_count": 3521083,
                 "column_count": 9,
                 "schema": "struct<order_id:int,user_id:int,eval_set:string,order_number:int,order_dow:int,order_hour_of_day:int,days_since_previous_order:double,is_valid:boolean,is_first_order:boolean>",
                 "partition_columns": [],
-                "delta_version": 14,
-                "history_entries": 15,
-                "execution_time_seconds": 2.555
+                "delta_version": 18,
+                "history_entries": 19,
+                "execution_time_seconds": 2.309
             },
-            "timestamp": "2026-08-30T23:00:05.884180+00:00"
+            "timestamp": "2026-09-10T20:00:40.090402+00:00"
         },
         {
             "component": "Gold",
@@ -102,28 +102,28 @@
             "message": "Gold validation passed.",
             "metrics": {
                 "table_exists": true,
-                "row_count": 60078,
+                "row_count": 206209,
                 "column_count": 10,
                 "schema": "struct<user_id:int,total_orders:bigint,avg_order_hour:double,avg_days_between_orders:double,first_order:int,last_order:int,is_repeat_customer:boolean,customer_order_span:int,shopping_window:string,customer_segment:string>",
                 "partition_columns": [],
-                "delta_version": 12,
-                "history_entries": 13,
-                "execution_time_seconds": 2.069
+                "delta_version": 18,
+                "history_entries": 19,
+                "execution_time_seconds": 2.073
             },
-            "timestamp": "2026-08-30T23:00:07.953015+00:00"
+            "timestamp": "2026-09-10T20:00:42.163884+00:00"
         },
         {
             "component": "Quality",
             "passed": true,
             "message": "Quality validation completed.",
             "metrics": {
-                "row_count": 1800000,
+                "row_count": 3521083,
                 "column_count": 9,
-                "duplicate_rows": 800000,
+                "duplicate_rows": 100000,
                 "null_customer_id": "N/A",
-                "execution_time_seconds": 2.507
+                "execution_time_seconds": 3.264
             },
-            "timestamp": "2026-08-30T23:00:10.459966+00:00"
+            "timestamp": "2026-09-10T20:00:45.428566+00:00"
         }
     ]
 }

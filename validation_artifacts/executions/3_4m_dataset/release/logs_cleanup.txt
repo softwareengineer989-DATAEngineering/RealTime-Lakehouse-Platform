@@ -1,0 +1,6 @@
+Runtime logs removed.
+
+Validation evidence preserved.
+
+Logs regenerate automatically.
+

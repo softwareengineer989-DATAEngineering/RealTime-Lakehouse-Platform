@@ -1,0 +1,12 @@
+htmlcov removed.
+
+Coverage evidence retained:
+
+coverage.xml
+
+validation_artifacts/reports/
+
+pytest_coverage.txt
+
+Repository cleaned for release.
+

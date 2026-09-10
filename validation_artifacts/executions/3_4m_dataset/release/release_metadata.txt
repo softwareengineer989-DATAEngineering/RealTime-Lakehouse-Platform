@@ -1,0 +1,23 @@
+Sprint : Sprint 17
+
+Phase : Production Release Readiness
+
+Dataset : 3.4 Million Instacart Records
+
+Previous Phases :
+PASS
+
+Phase 1
+PASS
+
+Phase 2
+PASS
+
+Phase 3
+PASS
+
+Phase 4
+PASS
+
+Ready for Production Pipeline Execution :
+YES

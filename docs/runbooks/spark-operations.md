@@ -241,10 +241,19 @@ Verify
 
 ---
 
+#  Streaming Shutdown Procedure
+
+1. Stop producer
+2. Wait for micro-batches
+3. Stop Spark stream
+4. Stop Kafka
+5. Verify checkpoints
+
+---
+
 # Related Documentation
 
-- README.md
-- Kafka Operations Runbook
-- Local Development Runbook
-- docs/architecture/
-- SECURITY.md
+- [Platform Architecture](../architecture/ARCHITECTURE.md)
+- [Validation Runbook](validation-runbook.md)
+- [Troubleshooting Guide](troubleshooting.md)
+- [Project Overview](../../README.md)

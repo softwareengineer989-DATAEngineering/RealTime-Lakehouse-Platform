@@ -76,7 +76,7 @@ The topic strategy should satisfy the following goals.
 The platform currently uses a primary topic for streaming order events.
 
 ```
-instacart-orders
+orders.raw
 ```
 
 The producer publishes order events to this topic.
@@ -98,7 +98,7 @@ Producer
 
 Kafka Topic
 
-(instacart-orders)
+(orders.raw)
 
 ↓
 
@@ -124,18 +124,24 @@ Gold Layer
 Topic names should be:
 
 - lowercase
-- hyphen-separated
+- dot-separated
 - descriptive
 - business-oriented
 
 Examples:
 
 ```
-instacart-orders
+orders.raw
 
-customer-events
+orders.validated
 
-inventory-updates
+orders.deadletter
+
+customers.raw
+
+inventory.events
+
+platform.audit
 
 payment-events
 ```
@@ -285,7 +291,7 @@ Future production deployments may introduce dedicated Dead Letter Queue (DLQ) to
 Example:
 
 ```
-instacart-orders-dlq
+orders.deadletter
 ```
 
 Potential use cases include:
@@ -390,6 +396,11 @@ These enhancements can be introduced without changing the application's high-lev
 - Single-topic architecture is intentionally simplified
 - Additional topics will be required as business capabilities expand
 
+### Platform Evolution
+
+The selected topic strategy intentionally separates domain event ingestion from downstream processing responsibilities. This architectural separation supports future enhancements to validation, auditing, operational monitoring, and additional stream-processing capabilities without requiring changes to the external Kafka topic contract.
+
+Maintaining a stable event contract while allowing internal processing capabilities to evolve is a deliberate design choice that promotes maintainability and long-term extensibility.
 ---
 
 # Validation
@@ -419,3 +430,10 @@ Final production-scale validation will be completed using the full Instacart dat
 - ADR-001: Kafka Container Runtime Selection
 - Sprint 5 – Kafka Foundation
 - Sprint 15 – Production Readiness
+
+---
+
+## Related Documentation
+
+- [Streaming Data Flow](../architecture/DATA_FLOW.md)
+- [Kafka Operations](../runbooks/kafka-operations.md)

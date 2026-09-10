@@ -1,0 +1,14 @@
+Sprint : Sprint 17
+
+Phase : Production Runtime Snapshot
+
+Purpose : Archive runtime state before production reset
+
+Data retained :
+100K
+500K
+1M
+
+Next Step :
+Production Reset
+

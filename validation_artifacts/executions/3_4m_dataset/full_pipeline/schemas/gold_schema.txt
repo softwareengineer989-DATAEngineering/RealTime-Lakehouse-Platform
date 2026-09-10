@@ -1,0 +1,11 @@
+root
+ |-- user_id: integer (nullable = true)
+ |-- total_orders: long (nullable = true)
+ |-- avg_order_hour: double (nullable = true)
+ |-- avg_days_between_orders: double (nullable = true)
+ |-- first_order: integer (nullable = true)
+ |-- last_order: integer (nullable = true)
+ |-- is_repeat_customer: boolean (nullable = true)
+ |-- customer_order_span: integer (nullable = true)
+ |-- shopping_window: string (nullable = true)
+ |-- customer_segment: string (nullable = true)

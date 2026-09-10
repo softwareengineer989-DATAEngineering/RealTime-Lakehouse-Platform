@@ -1,0 +1,22 @@
+order_id | user_id | eval_set | order_number | order_dow | order_hour_of_day | days_since_previous_order | is_valid | is_first_order
+----------------------------------------------------------------------------------------------------
+2186167 | 14329 | prior | 1 | 2 | 12 | nan | True | True
+2381417 | 14329 | prior | 2 | 6 | 11 | 25.0 | True | False
+1689280 | 14329 | prior | 3 | 0 | 9 | 8.0 | True | False
+1043570 | 14329 | prior | 4 | 0 | 14 | 14.0 | True | False
+651559 | 14329 | prior | 5 | 1 | 11 | 8.0 | True | False
+769272 | 14329 | prior | 6 | 6 | 13 | 12.0 | True | False
+628304 | 14329 | prior | 7 | 6 | 12 | 21.0 | True | False
+2578969 | 14329 | prior | 8 | 0 | 11 | 30.0 | True | False
+2441465 | 14329 | prior | 9 | 3 | 16 | 3.0 | True | False
+2256342 | 14329 | prior | 10 | 0 | 15 | 11.0 | True | False
+1868804 | 14329 | prior | 11 | 1 | 14 | 30.0 | True | False
+3192947 | 14329 | prior | 12 | 0 | 11 | 13.0 | True | False
+1383812 | 14329 | test | 13 | 2 | 15 | 30.0 | True | False
+2936544 | 14334 | prior | 1 | 0 | 9 | nan | True | True
+2801871 | 14334 | prior | 2 | 5 | 13 | 5.0 | True | False
+3399175 | 14334 | prior | 3 | 6 | 14 | 8.0 | True | False
+2003833 | 14334 | prior | 4 | 2 | 9 | 30.0 | True | False
+2400712 | 14334 | prior | 5 | 1 | 10 | 27.0 | True | False
+204365 | 14334 | test | 6 | 1 | 9 | 7.0 | True | False
+2999525 | 14336 | prior | 1 | 0 | 12 | nan | True | True

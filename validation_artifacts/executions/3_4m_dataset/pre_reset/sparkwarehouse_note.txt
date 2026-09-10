@@ -1,0 +1,16 @@
+Sprint 17 - Pre-Reset Runtime Snapshot
+
+Spark warehouse is empty.
+
+Project uses filesystem-backed Delta Lake tables.
+
+No managed Spark SQL warehouse tables exist.
+
+All Delta tables are stored by filesystem path:
+
+data/bronze
+data/silver
+data/gold
+
+This is expected production architecture for this project.
+
