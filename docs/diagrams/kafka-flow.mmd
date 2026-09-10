@@ -1,0 +1,27 @@
+sequenceDiagram
+
+participant Dataset
+participant Producer
+participant Kafka
+participant Bronze
+participant BronzeDelta
+
+Dataset->>Producer: Read retail dataset
+
+loop For each record
+
+Producer->>Kafka: Publish event
+
+end
+
+Kafka-->>Bronze: Consume message
+
+Bronze->>Bronze: Parse JSON
+
+Bronze->>Bronze: Validate schema
+
+Bronze->>BronzeDelta: Append Delta record
+
+Bronze->>Bronze: Commit checkpoint
+
+Bronze-->>Kafka: Commit consumer offset

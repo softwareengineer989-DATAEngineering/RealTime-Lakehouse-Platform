@@ -1,0 +1,69 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.egg-info/
+.venv/
+venv/
+*.pyc
+.pytype/
+.coverage
+.mypy_cache/
+
+.ruff_cache/
+
+htmlcov/
+
+dist/
+
+build/
+
+# IDE
+.idea/
+.vscode/
+
+# Environment
+.env
+
+# Logs
+logs/
+*.log
+
+# Spark
+metastore_db/
+spark-warehouse/
+
+# Checkpoints
+streaming/checkpoints/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Raw datasets
+datasets/raw/
+
+
+# Virtual Environment
+.venv/
+
+
+
+
+# Runtime data
+data/
+
+# Spark checkpoints
+checkpoints/
+
+
+
+
+
+# Spark event logs
+spark-events/
+
+
+
+
+

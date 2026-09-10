@@ -1,0 +1,22 @@
+user_id | total_orders | avg_order_hour | avg_days_between_orders | first_order | last_order | is_repeat_customer | customer_order_span | shopping_window | customer_segment
+----------------------------------------------------------------------------------------------------
+133143 | 11 | 15.272727272727273 | nan | 1 | 11 | True | 10 | Afternoon | Loyal
+16590 | 8 | 12.875 | nan | 1 | 8 | True | 7 | Afternoon | Loyal
+26432 | 19 | 15.526315789473685 | nan | 1 | 19 | True | 18 | Afternoon | Loyal
+39132 | 4 | 12.0 | nan | 1 | 4 | True | 3 | Afternoon | Regular
+107207 | 4 | 14.75 | nan | 1 | 4 | True | 3 | Afternoon | Regular
+112267 | 66 | 13.56060606060606 | nan | 1 | 66 | True | 65 | Afternoon | Loyal
+141348 | 12 | 13.416666666666666 | nan | 1 | 12 | True | 11 | Afternoon | Loyal
+24261 | 26 | 11.115384615384615 | nan | 1 | 26 | True | 25 | Morning | Loyal
+186780 | 17 | 12.117647058823529 | nan | 1 | 17 | True | 16 | Afternoon | Loyal
+92294 | 46 | 12.434782608695652 | nan | 1 | 46 | True | 45 | Afternoon | Loyal
+189344 | 22 | 12.909090909090908 | nan | 1 | 22 | True | 21 | Afternoon | Loyal
+25628 | 18 | 13.944444444444445 | nan | 1 | 18 | True | 17 | Afternoon | Loyal
+23323 | 6 | 12.333333333333334 | nan | 1 | 6 | True | 5 | Afternoon | Loyal
+124178 | 16 | 16.25 | nan | 1 | 16 | True | 15 | Afternoon | Loyal
+47220 | 14 | 13.857142857142858 | nan | 1 | 14 | True | 13 | Afternoon | Loyal
+175617 | 7 | 14.714285714285714 | nan | 1 | 7 | True | 6 | Afternoon | Loyal
+120521 | 31 | 13.0 | nan | 1 | 31 | True | 30 | Afternoon | Loyal
+31386 | 7 | 11.714285714285714 | nan | 1 | 7 | True | 6 | Morning | Loyal
+116627 | 7 | 12.571428571428571 | nan | 1 | 7 | True | 6 | Afternoon | Loyal
+198165 | 66 | 14.833333333333334 | nan | 1 | 66 | True | 65 | Afternoon | Loyal

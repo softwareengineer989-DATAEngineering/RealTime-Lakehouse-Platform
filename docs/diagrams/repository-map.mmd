@@ -1,0 +1,80 @@
+flowchart TB
+
+ROOT["RealTime-Lakehouse-Platform"]
+
+ROOT --> SRC["src/"]
+ROOT --> TESTS["tests/"]
+ROOT --> DATA["data/"]
+ROOT --> DATASETS["datasets/"]
+ROOT --> CHECKPOINTS["checkpoints/"]
+ROOT --> DOCS["docs/"]
+ROOT --> DOCKER["docker/"]
+ROOT --> SCRIPTS["scripts/"]
+ROOT --> VALIDATION["validation_artifacts/"]
+ROOT --> GITHUB[".github/"]
+
+%% =======================================================
+%% Source
+%% =======================================================
+
+SRC --> RETAIL["retaillake/"]
+
+RETAIL --> CONFIG["config"]
+RETAIL --> PRODUCER["Kafka Producer"]
+RETAIL --> BRONZE["Bronze Pipeline"]
+RETAIL --> SILVER["Silver Pipeline"]
+RETAIL --> GOLD["Gold Pipeline"]
+RETAIL --> COMMON["Shared Utilities"]
+
+%% =======================================================
+%% Tests
+%% =======================================================
+
+TESTS --> UNIT["Unit Tests"]
+TESTS --> INTEGRATION["Integration Tests"]
+TESTS --> PIPELINE["Pipeline Tests"]
+
+%% =======================================================
+%% Runtime
+%% =======================================================
+
+DATA --> BRONZE_D["Bronze Delta"]
+DATA --> SILVER_D["Silver Delta"]
+DATA --> GOLD_D["Gold Delta"]
+
+CHECKPOINTS --> BCP["Bronze"]
+CHECKPOINTS --> SCP["Silver"]
+CHECKPOINTS --> GCP["Gold"]
+
+%% =======================================================
+%% Documentation
+%% =======================================================
+
+DOCS --> ARCH["Architecture"]
+DOCS --> ADR["Design Decisions"]
+DOCS --> RUNBOOKS["Runbooks"]
+DOCS --> DIAGRAMS["Mermaid Diagrams"]
+DOCS --> DRAWIO["Draw.io Sources"]
+DOCS --> ASSETS["PNG Assets"]
+
+%% =======================================================
+%% Validation
+%% =======================================================
+
+VALIDATION --> EXEC["Execution Evidence"]
+VALIDATION --> REPORTS["Reports"]
+VALIDATION --> METRICS["Runtime Metrics"]
+VALIDATION --> SCREENSHOTS["Screenshots"]
+
+%% =======================================================
+%% Deployment
+%% =======================================================
+
+DOCKER --> COMPOSE["docker-compose.yml"]
+DOCKER --> IMAGES["Dockerfiles"]
+
+%% =======================================================
+%% Automation
+%% =======================================================
+
+GITHUB --> CI["GitHub Actions"]

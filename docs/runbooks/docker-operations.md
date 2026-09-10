@@ -17,32 +17,11 @@ Docker hosts:
 
 ---
 
+
 # Starting Services
 
 ```bash
 docker compose up -d
-```
-
----
-
-# Stopping Services
-
-```bash
-docker compose down
-```
-
----
-
-# Restart Services
-
-```bash
-docker compose restart
-```
-
-Restart single service
-
-```bash
-docker compose restart kafka
 ```
 
 ---
@@ -60,6 +39,37 @@ docker ps -a
 ```
 
 ---
+
+
+
+---
+
+## Kafka CLI Examples
+
+### List Topics
+
+```bash
+docker exec kafka kafka-topics \
+  --bootstrap-server localhost:9092 \
+  --list
+```
+
+### Describe Topic
+
+```bash
+docker exec kafka kafka-topics \
+  --bootstrap-server localhost:9092 \
+  --describe \
+  --topic orders.raw
+```
+
+### List Consumer Groups
+
+```bash
+docker exec kafka kafka-consumer-groups \
+  --bootstrap-server localhost:9092 \
+  --list
+```
 
 # View Logs
 
@@ -87,6 +97,12 @@ Follow logs
 docker compose logs -f kafka
 ```
 
+# Stopping Services
+
+```bash
+docker compose down
+```
+
 ---
 
 # Execute Commands Inside Container
@@ -94,6 +110,7 @@ docker compose logs -f kafka
 ```bash
 docker exec -it kafka bash
 ```
+
 
 Spark
 
@@ -113,6 +130,18 @@ Rebuild without cache
 
 ```bash
 docker compose build --no-cache
+```
+
+# Restart Services
+
+```bash
+docker compose restart
+```
+
+Restart single service
+
+```bash
+docker compose restart kafka
 ```
 
 ---
@@ -220,9 +249,30 @@ If services fail:
 
 ---
 
+
+# Disaster Recovery
+
+If Docker metadata becomes corrupted:
+
+1. Export required volumes.
+2. Remove containers.
+3. Remove orphaned networks.
+4. Rebuild images.
+5. Restore required data volumes.
+6. Validate platform health.
+
 # References
 
 - docker-compose.yml
 - docker/
 - README.md
 - Local Development Runbook
+
+---
+
+# Related Documentation
+
+- [Platform Architecture](../architecture/ARCHITECTURE.md)
+- [Local Development Guide](local-development.md)
+- [Troubleshooting Guide](troubleshooting.md)
+- [Project Overview](../../README.md)

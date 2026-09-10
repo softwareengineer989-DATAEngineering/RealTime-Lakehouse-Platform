@@ -1,0 +1,113 @@
+flowchart TB
+
+%% ==========================================================
+%% RealTime Lakehouse Platform
+%% Local Deployment Architecture
+%% ==========================================================
+
+subgraph Developer["Developer Workstation"]
+    DEV[Developer]
+    IDE[PyCharm / VS Code]
+    GIT[Git Repository]
+end
+
+subgraph Docker["Docker Compose Platform"]
+
+    subgraph KafkaStack["Kafka Layer"]
+        PRODUCER[Python Kafka Producer]
+        TOPIC[(Kafka Topic)]
+    end
+
+    subgraph SparkStack["Spark Structured Streaming"]
+
+        BRONZE[Bronze Streaming Job]
+
+        SILVER[Silver Streaming Job]
+
+        GOLD[Gold Aggregation Job]
+
+    end
+
+end
+
+subgraph Storage["Persistent Storage"]
+
+    DATASETS[(Retail Dataset)]
+
+    BRONZE_DELTA[(Bronze Delta)]
+
+    SILVER_DELTA[(Silver Delta)]
+
+    GOLD_DELTA[(Gold Delta)]
+
+    BRONZE_CP[(Bronze Checkpoint)]
+
+    SILVER_CP[(Silver Checkpoint)]
+
+    GOLD_CP[(Gold Checkpoint)]
+
+end
+
+subgraph Validation["Validation Framework"]
+
+    VALIDATORS[Validation Scripts]
+
+    REPORTS[Validation Reports]
+
+    METRICS[Execution Metrics]
+
+    ARTIFACTS[Validation Artifacts]
+
+end
+
+subgraph Quality["Data Quality"]
+
+    RULES[Validation Rules]
+
+    INVALID[Invalid Records]
+
+end
+
+DEV --> IDE
+
+IDE --> GIT
+
+DATASETS --> PRODUCER
+
+PRODUCER --> TOPIC
+
+TOPIC --> BRONZE
+
+BRONZE --> BRONZE_DELTA
+
+BRONZE --> BRONZE_CP
+
+BRONZE --> RULES
+
+RULES -->|Valid| SILVER
+
+RULES -->|Invalid| INVALID
+
+INVALID --> ARTIFACTS
+
+SILVER --> SILVER_DELTA
+
+SILVER --> SILVER_CP
+
+SILVER --> GOLD
+
+GOLD --> GOLD_DELTA
+
+GOLD --> GOLD_CP
+
+BRONZE_DELTA --> VALIDATORS
+
+SILVER_DELTA --> VALIDATORS
+
+GOLD_DELTA --> VALIDATORS
+
+VALIDATORS --> REPORTS
+
+VALIDATORS --> METRICS
+
+VALIDATORS --> ARTIFACTS

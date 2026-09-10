@@ -1,0 +1,1293 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+<meta charset="utf-8">
+
+<title>Platform Validation Report</title>
+
+<style>
+
+*{
+    box-sizing:border-box;
+}
+
+body{
+    margin:0;
+    padding:40px;
+    background:#f4f6f9;
+    color:#222;
+    font-family:Segoe UI,Arial,sans-serif;
+}
+
+.container{
+    max-width:1500px;
+    margin:auto;
+}
+
+h1{
+    color:#1f2937;
+    margin-bottom:10px;
+}
+
+.subtitle{
+    color:#666;
+    margin-bottom:35px;
+}
+
+.summary{
+    display:flex;
+    gap:20px;
+    flex-wrap:wrap;
+    margin-bottom:35px;
+}
+
+.summary-card{
+    background:white;
+    border-radius:10px;
+    padding:20px;
+    min-width:220px;
+    box-shadow:0 2px 8px rgba(0,0,0,.10);
+}
+
+.summary-title{
+    font-size:14px;
+    color:#666;
+}
+
+.summary-value{
+    font-size:34px;
+    font-weight:bold;
+    margin-top:8px;
+}
+
+.pass{
+    color:#15803d;
+}
+
+.fail{
+    color:#dc2626;
+}
+
+.validator-card{
+    background:white;
+    border-radius:10px;
+    padding:20px;
+    margin-bottom:28px;
+    box-shadow:0 2px 10px rgba(0,0,0,.12);
+}
+
+.validator-pass{
+    border-left:7px solid #16a34a;
+}
+
+.validator-fail{
+    border-left:7px solid #dc2626;
+}
+
+.validator-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.status{
+    font-size:15px;
+    font-weight:bold;
+}
+
+.duration{
+    font-size:15px;
+    color:#666;
+}
+
+.message{
+    margin:18px 0;
+}
+
+.metrics-table{
+    width:100%;
+    border-collapse:collapse;
+    table-layout:fixed;
+    margin-top:15px;
+}
+
+.metrics-table th{
+    background:#1f2937;
+    color:white;
+    padding:10px;
+    text-align:left;
+}
+
+.metrics-table td{
+    border:1px solid #ddd;
+    padding:10px;
+    vertical-align:top;
+    white-space:normal;
+    word-break:break-word;
+    overflow-wrap:anywhere;
+}
+
+.metric-name{
+    width:22%;
+    font-weight:bold;
+    background:#f9fafb;
+}
+
+.metrics-table td:last-child{
+    width:78%;
+}
+
+.schema-block{
+    margin:0;
+    padding:10px;
+    background:#f8fafc;
+    border-radius:6px;
+    white-space:pre-wrap;
+    word-break:break-word;
+    overflow-wrap:anywhere;
+    font-family:Consolas,Monaco,monospace;
+    font-size:13px;
+    line-height:1.5;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>Platform Validation Report</h1>
+
+<p class="subtitle">
+
+Enterprise Platform Validation Framework
+
+</p>
+
+<div class="summary">
+
+<div class="summary-card">
+
+<div class="summary-title">
+
+Generated
+
+</div>
+
+<div class="summary-value" style="font-size:18px">
+
+2026-08-31T18:04:46.325791
+
+</div>
+
+</div>
+
+<div class="summary-card">
+
+<div class="summary-title">
+
+Total Validators
+
+</div>
+
+<div class="summary-value">
+
+8
+
+</div>
+
+</div>
+
+<div class="summary-card">
+
+<div class="summary-title">
+
+Passed
+
+</div>
+
+<div class="summary-value pass">
+
+8
+
+</div>
+
+</div>
+
+<div class="summary-card">
+
+<div class="summary-title">
+
+Failed
+
+</div>
+
+<div class="summary-value fail">
+
+0
+
+</div>
+
+</div>
+
+</div>
+
+<h2>Validator Results</h2>
+
+
+<div class="validator-card validator-pass">
+
+<div class="validator-header">
+
+<div>
+
+<h2>Runtime</h2>
+
+<div class="status">PASS</div>
+
+</div>
+
+<div class="duration">
+0.039 sec
+</div>
+
+</div>
+
+<p class="message">
+Spark runtime initialized successfully.
+</p>
+
+
+<table class="metrics-table">
+
+<thead>
+
+<tr>
+
+<th>Metric</th>
+
+<th>Value</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+
+<tr>
+<td class="metric-name">
+spark_version
+</td>
+
+<td>
+4.0.0
+</td>
+
+</tr>
+
+<tr>
+<td class="metric-name">
+master
+</td>
+
+<td>
+local[*]
+</td>
+
+</tr>
+
+<tr>
+<td class="metric-name">
+application_name
+</td>
+
+<td>
+RealTime-Lakehouse-Platform
+</td>
+
+</tr>
+
+<tr>
+<td class="metric-name">
+python_version
+</td>
+
+<td>
+3.13
+</td>
+
+</tr>
+
+<tr>
+<td class="metric-name">
+executor_memory
+</td>
+
+<td>
+2g
+</td>
+
+</tr>
+
+<tr>
+<td class="metric-name">
+driver_memory
+</td>
+
+<td>
+2g
+</td>
+
+</tr>
+
+<tr>
+<td class="metric-name">
+execution_time_seconds
+</td>
+
+<td>
+0.039
+</td>
+
+</tr>
+
+
+</tbody>
+
+</table>
+
+
+</div>
+
+<div class="validator-card validator-pass">
+
+<div class="validator-header">
+
+<div>
+
+<h2>Environment</h2>
+
+<div class="status">PASS</div>
+
+</div>
+
+<div class="duration">
+0.025 sec
+</div>
+
+</div>
+
+<p class="message">
+Environment validated successfully.
+</p>
+
+
+<table class="metrics-table">
+
+<thead>
+
+<tr>
+
+<th>Metric</th>
+
+<th>Value</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+
+<tr>
+<td class="metric-name">
+JAVA_HOME
+</td>
+
+<td>
+C:\Users\travi\AppData\Local\Programs\Eclipse Adoptium\jdk-17.0.20.101-hotspot\
+</td>
+
+</tr>
+
+<tr>
+<td class="metric-name">
+HADOOP_HOME
+</td>
+
+<td>
+C:\hadoop
+</td>
+
+</tr>
+
+<tr>
+<td class="metric-name">
+platform
+</td>
+
+<td>
+Windows-11-10.0.26200-SP0
+</td>
+
+</tr>
+
+<tr>
+<td class="metric-name">
+python
+</td>
+
+<td>
+3.13.4
+</td>
+
+</tr>
+
+<tr>
+<td class="metric-name">
+processor
+</td>
+
+<td>
+Intel64 Family 6 Model 151 Stepping 5, GenuineIntel
+</td>
+
+</tr>
+
+<tr>
+<td class="metric-name">
+docker
+</td>
+
+<td>
+No
+</td>
+
+</tr>
+
+<tr>
+<td class="metric-name">
+execution_time_seconds
+</td>
+
+<td>
+0.025
+</td>
+
+</tr>
+
+
+</tbody>
+
+</table>
+
+
+</div>
+
+<div class="validator-card validator-pass">
+
+<div class="validator-header">
+
+<div>
+
+<h2>Configuration</h2>
+
+<div class="status">PASS</div>
+
+</div>
+
+<div class="duration">
+0.000 sec
+</div>
+
+</div>
+
+<p class="message">
+Platform configuration validated successfully.
+</p>
+
+
+<table class="metrics-table">
+
+<thead>
+
+<tr>
+
+<th>Metric</th>
+
+<th>Value</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+
+<tr>
+<td class="metric-name">
+bronze_exists
+</td>
+
+<td>
+Yes
+</td>
+
+</tr>
+
+<tr>
+<td class="metric-name">
+silver_exists
+</td>
+
+<td>
+Yes
+</td>
+
+</tr>
+
+<tr>
+<td class="metric-name">
+gold_exists
+</td>
+
+<td>
+Yes
+</td>
+
+</tr>
+
+<tr>
+<td class="metric-name">
+checkpoint_exists
+</td>
+
+<td>
+Yes
+</td>
+
+</tr>
+
+<tr>
+<td class="metric-name">
+required_paths
+</td>
+
+<td>
+4
+</td>
+
+</tr>
+
+<tr>
+<td class="metric-name">
+missing_paths
+</td>
+
+<td>
+0
+</td>
+
+</tr>
+
+<tr>
+<td class="metric-name">
+configured_constants
+</td>
+
+<td>
+2
+</td>
+
+</tr>
+
+<tr>
+<td class="metric-name">
+execution_time_seconds
+</td>
+
+<td>
+0.000
+</td>
+
+</tr>
+
+
+</tbody>
+
+</table>
+
+
+</div>
+
+<div class="validator-card validator-pass">
+
+<div class="validator-header">
+
+<div>
+
+<h2>Kafka</h2>
+
+<div class="status">PASS</div>
+
+</div>
+
+<div class="duration">
+0.000 sec
+</div>
+
+</div>
+
+<p class="message">
+Kafka configuration validated successfully.
+</p>
+
+
+<table class="metrics-table">
+
+<thead>
+
+<tr>
+
+<th>Metric</th>
+
+<th>Value</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+
+<tr>
+<td class="metric-name">
+bootstrap_servers
+</td>
+
+<td>
+Yes
+</td>
+
+</tr>
+
+<tr>
+<td class="metric-name">
+producer_timeout
+</td>
+
+<td>
+Yes
+</td>
+
+</tr>
+
+<tr>
+<td class="metric-name">
+acks
+</td>
+
+<td>
+Yes
+</td>
+
+</tr>
+
+<tr>
+<td class="metric-name">
+retries
+</td>
+
+<td>
+Yes
+</td>
+
+</tr>
+
+<tr>
+<td class="metric-name">
+configured_properties
+</td>
+
+<td>
+4
+</td>
+
+</tr>
+
+<tr>
+<td class="metric-name">
+execution_time_seconds
+</td>
+
+<td>
+0.000
+</td>
+
+</tr>
+
+
+</tbody>
+
+</table>
+
+
+</div>
+
+<div class="validator-card validator-pass">
+
+<div class="validator-header">
+
+<div>
+
+<h2>Bronze</h2>
+
+<div class="status">PASS</div>
+
+</div>
+
+<div class="duration">
+9.291 sec
+</div>
+
+</div>
+
+<p class="message">
+Bronze validation passed.
+</p>
+
+
+<table class="metrics-table">
+
+<thead>
+
+<tr>
+
+<th>Metric</th>
+
+<th>Value</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+
+<tr>
+<td class="metric-name">
+table_exists
+</td>
+
+<td>
+Yes
+</td>
+
+</tr>
+
+<tr>
+<td class="metric-name">
+row_count
+</td>
+
+<td>
+1800000
+</td>
+
+</tr>
+
+<tr>
+<td class="metric-name">
+column_count
+</td>
+
+<td>
+7
+</td>
+
+</tr>
+
+<tr>
+<td class="metric-name">
+schema
+</td>
+
+<td>
+<pre class="schema-block">order_id : int
+user_id : int
+eval_set : string
+order_number : int
+order_dow : int
+order_hour_of_day : int
+days_since_prior_order : double</pre>
+</td>
+
+</tr>
+
+<tr>
+<td class="metric-name">
+partition_columns
+</td>
+
+<td>
+-
+</td>
+
+</tr>
+
+<tr>
+<td class="metric-name">
+delta_version
+</td>
+
+<td>
+14
+</td>
+
+</tr>
+
+<tr>
+<td class="metric-name">
+history_entries
+</td>
+
+<td>
+15
+</td>
+
+</tr>
+
+<tr>
+<td class="metric-name">
+execution_time_seconds
+</td>
+
+<td>
+9.291
+</td>
+
+</tr>
+
+
+</tbody>
+
+</table>
+
+
+</div>
+
+<div class="validator-card validator-pass">
+
+<div class="validator-header">
+
+<div>
+
+<h2>Silver</h2>
+
+<div class="status">PASS</div>
+
+</div>
+
+<div class="duration">
+2.448 sec
+</div>
+
+</div>
+
+<p class="message">
+Silver validation passed.
+</p>
+
+
+<table class="metrics-table">
+
+<thead>
+
+<tr>
+
+<th>Metric</th>
+
+<th>Value</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+
+<tr>
+<td class="metric-name">
+table_exists
+</td>
+
+<td>
+Yes
+</td>
+
+</tr>
+
+<tr>
+<td class="metric-name">
+row_count
+</td>
+
+<td>
+1800000
+</td>
+
+</tr>
+
+<tr>
+<td class="metric-name">
+column_count
+</td>
+
+<td>
+9
+</td>
+
+</tr>
+
+<tr>
+<td class="metric-name">
+schema
+</td>
+
+<td>
+<pre class="schema-block">order_id : int
+user_id : int
+eval_set : string
+order_number : int
+order_dow : int
+order_hour_of_day : int
+days_since_previous_order : double
+is_valid : boolean
+is_first_order : boolean</pre>
+</td>
+
+</tr>
+
+<tr>
+<td class="metric-name">
+partition_columns
+</td>
+
+<td>
+-
+</td>
+
+</tr>
+
+<tr>
+<td class="metric-name">
+delta_version
+</td>
+
+<td>
+14
+</td>
+
+</tr>
+
+<tr>
+<td class="metric-name">
+history_entries
+</td>
+
+<td>
+15
+</td>
+
+</tr>
+
+<tr>
+<td class="metric-name">
+execution_time_seconds
+</td>
+
+<td>
+2.448
+</td>
+
+</tr>
+
+
+</tbody>
+
+</table>
+
+
+</div>
+
+<div class="validator-card validator-pass">
+
+<div class="validator-header">
+
+<div>
+
+<h2>Gold</h2>
+
+<div class="status">PASS</div>
+
+</div>
+
+<div class="duration">
+2.171 sec
+</div>
+
+</div>
+
+<p class="message">
+Gold validation passed.
+</p>
+
+
+<table class="metrics-table">
+
+<thead>
+
+<tr>
+
+<th>Metric</th>
+
+<th>Value</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+
+<tr>
+<td class="metric-name">
+table_exists
+</td>
+
+<td>
+Yes
+</td>
+
+</tr>
+
+<tr>
+<td class="metric-name">
+row_count
+</td>
+
+<td>
+60078
+</td>
+
+</tr>
+
+<tr>
+<td class="metric-name">
+column_count
+</td>
+
+<td>
+10
+</td>
+
+</tr>
+
+<tr>
+<td class="metric-name">
+schema
+</td>
+
+<td>
+<pre class="schema-block">user_id : int
+total_orders : bigint
+avg_order_hour : double
+avg_days_between_orders : double
+first_order : int
+last_order : int
+is_repeat_customer : boolean
+customer_order_span : int
+shopping_window : string
+customer_segment : string</pre>
+</td>
+
+</tr>
+
+<tr>
+<td class="metric-name">
+partition_columns
+</td>
+
+<td>
+-
+</td>
+
+</tr>
+
+<tr>
+<td class="metric-name">
+delta_version
+</td>
+
+<td>
+12
+</td>
+
+</tr>
+
+<tr>
+<td class="metric-name">
+history_entries
+</td>
+
+<td>
+13
+</td>
+
+</tr>
+
+<tr>
+<td class="metric-name">
+execution_time_seconds
+</td>
+
+<td>
+2.171
+</td>
+
+</tr>
+
+
+</tbody>
+
+</table>
+
+
+</div>
+
+<div class="validator-card validator-pass">
+
+<div class="validator-header">
+
+<div>
+
+<h2>Quality</h2>
+
+<div class="status">PASS</div>
+
+</div>
+
+<div class="duration">
+2.484 sec
+</div>
+
+</div>
+
+<p class="message">
+Quality validation completed.
+</p>
+
+
+<table class="metrics-table">
+
+<thead>
+
+<tr>
+
+<th>Metric</th>
+
+<th>Value</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+
+<tr>
+<td class="metric-name">
+row_count
+</td>
+
+<td>
+1800000
+</td>
+
+</tr>
+
+<tr>
+<td class="metric-name">
+column_count
+</td>
+
+<td>
+9
+</td>
+
+</tr>
+
+<tr>
+<td class="metric-name">
+duplicate_rows
+</td>
+
+<td>
+800000
+</td>
+
+</tr>
+
+<tr>
+<td class="metric-name">
+null_customer_id
+</td>
+
+<td>
+N/A
+</td>
+
+</tr>
+
+<tr>
+<td class="metric-name">
+execution_time_seconds
+</td>
+
+<td>
+2.484
+</td>
+
+</tr>
+
+
+</tbody>
+
+</table>
+
+
+</div>
+
+
+<hr style="margin-top:40px">
+
+<p style="color:#666;font-size:13px;">
+
+Generated automatically by the
+
+<strong>RealTime-Lakehouse-Platform Validation Framework</strong>
+
+</p>
+
+</div>
+
+</body>
+
+</html>

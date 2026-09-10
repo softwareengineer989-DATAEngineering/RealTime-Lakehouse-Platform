@@ -1,0 +1,8 @@
+root
+ |-- order_id: integer (nullable = true)
+ |-- user_id: integer (nullable = true)
+ |-- eval_set: string (nullable = true)
+ |-- order_number: integer (nullable = true)
+ |-- order_dow: integer (nullable = true)
+ |-- order_hour_of_day: integer (nullable = true)
+ |-- days_since_prior_order: double (nullable = true)

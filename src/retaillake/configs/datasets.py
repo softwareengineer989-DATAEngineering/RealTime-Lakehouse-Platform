@@ -32,7 +32,6 @@ def get_dataset_profile() -> str:
 
     return os.getenv("DATASET_PROFILE", "100K").upper()
 
-
 def get_orders_dataset():
 
     profile = get_dataset_profile()

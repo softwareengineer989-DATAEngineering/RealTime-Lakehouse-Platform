@@ -336,9 +336,8 @@ Before escalating:
 
 # Related Documentation
 
-- Local Development Runbook
-- Docker Operations Runbook
-- Kafka Operations Runbook
-- Spark Operations Runbook
-- SECURITY.md
-- README.md
+- [Docker Operations](docker-operations.md)
+- [Kafka Operations](kafka-operations.md)
+- [Spark Operations](spark-operations.md)
+- [Validation Runbook](validation-runbook.md)
+- [Project Overview](../../README.md)

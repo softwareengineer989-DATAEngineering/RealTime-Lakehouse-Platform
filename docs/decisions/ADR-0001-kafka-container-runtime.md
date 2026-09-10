@@ -134,6 +134,8 @@ This separation reinforces modularity and simplifies development workflows.
 
 ---
 
+Kafka CLI tools are intentionally executed inside the running Docker container using docker exec rather than requiring a host-level Kafka installation. This keeps development environments reproducible across contributors and operating systems.
+
 # Architecture
 
 ```
@@ -332,3 +334,10 @@ These enhancements can be introduced without changing the platform's application
 - Project README
 - Sprint 5 – Kafka Foundation
 - Sprint 15 – Production Readiness
+
+---
+
+## Related Documentation
+
+- [Platform Architecture](../architecture/ARCHITECTURE.md)
+- [Kafka Operations](../runbooks/kafka-operations.md)

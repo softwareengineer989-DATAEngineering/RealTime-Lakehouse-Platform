@@ -1,0 +1,22 @@
+======================================================================
+PHASE 6D - DELTA METADATA VALIDATION
+======================================================================
+
+Execution Time : 2026-09-10 16:00:07
+
+Layer : bronze
+Rows  : 3521083
+Path  : G:\DataEngineeringPROJECT\RealTime-Lakehouse-Platform\data\bronze
+
+Layer : silver
+Rows  : 3521083
+Path  : G:\DataEngineeringPROJECT\RealTime-Lakehouse-Platform\data\silver
+
+Layer : gold
+Rows  : 206209
+Path  : G:\DataEngineeringPROJECT\RealTime-Lakehouse-Platform\data\gold
+
+======================================================================
+Total Rows : 7248375
+Status     : PASS
+======================================================================

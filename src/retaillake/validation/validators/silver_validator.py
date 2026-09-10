@@ -9,25 +9,22 @@ from retaillake.validation.validation_result import ValidationResult
 
 class SilverValidator(BaseValidator):
 
-    def __init__(self):
-
-        self.spark: SparkSession = get_spark()
-
-
     def validate(self) -> ValidationResult:
 
         try:
 
-            df = self.spark.read.format("delta").load(SILVER_PATH)
+            spark = get_spark()
+
+            df = spark.read.format("delta").load(SILVER_PATH)
 
             delta_table = (
-                self.spark.sql(
+                spark.sql(
                     f"DESCRIBE DETAIL delta.`{SILVER_PATH}`"
                 )
                 .first()
             )
 
-            history = self.spark.sql(
+            history = spark.sql(
                 f"DESCRIBE HISTORY delta.`{SILVER_PATH}`"
             )
 

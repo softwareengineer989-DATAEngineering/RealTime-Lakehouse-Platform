@@ -1,0 +1,45 @@
+sequenceDiagram
+
+autonumber
+
+participant Producer
+participant Kafka
+participant Bronze
+participant BronzeDelta
+participant Silver
+participant SilverDelta
+participant Gold
+participant GoldDelta
+participant Validator
+
+Producer->>Kafka: Publish retail order event
+
+Kafka->>Bronze: Consume message
+
+Bronze->>Bronze: Parse JSON
+
+Bronze->>Bronze: Validate schema
+
+Bronze->>BronzeDelta: Write Bronze Delta
+
+Bronze->>Bronze: Save checkpoint
+
+Bronze->>Silver: Stream valid Bronze records
+
+Silver->>Silver: Apply transformations
+
+Silver->>SilverDelta: Write Silver Delta
+
+Silver->>Silver: Save checkpoint
+
+Silver->>Gold: Stream curated records
+
+Gold->>Gold: Aggregate business metrics
+
+Gold->>GoldDelta: Write Gold Delta
+
+Gold->>Gold: Save checkpoint
+
+GoldDelta->>Validator: Validate outputs
+
+Validator-->>GoldDelta: Validation passed
