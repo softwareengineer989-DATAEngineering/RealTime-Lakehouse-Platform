@@ -27,7 +27,7 @@ Real-Time Lakehouse Platform.
 
 Highlights include:
 
-• Production-scale dataset validation
+• Complete dataset execution validation
 • Repository restructuring
 • Operational documentation
 • ADRs

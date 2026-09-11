@@ -261,7 +261,7 @@ The platform supports multiple execution profiles.
 
 Default execution uses the lightweight dataset.
 
-For production-scale validation:
+For complete dataset validation:
 
 Windows
 
